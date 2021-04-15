@@ -26,7 +26,7 @@ const Main = () => {
             </div>
 
             <h1>История генериций QR</h1>
-            <table>
+            <table className='tableWide'>
                 <TableRow data={header} header/>
                 {data.map((el,i)=>{
                     return(
