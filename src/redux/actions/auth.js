@@ -4,14 +4,15 @@ import {innerBackend, instance, setAuthToken} from '../../components/utils/axios
 
 
 // LOAD USER 
-export const test = () => async dispatch => {
+export const testHandler = (num) => async dispatch => {
 
+  console.log(num)
 
   try {
 
         dispatch({
           type: TEST,
-          payload: 'hi test',
+          payload: num,
         });
 
      }
