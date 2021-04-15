@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import { createBrowserHistory } from "history";
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  
+} from "react-router-dom";
+import styles from './styles/app.module.css'
+
+import Layout from './components/layout/index'
+import Main from './pages/main'
+import Winners from './pages/winners'
+import History from './pages/history'
+import Ndfl from './pages/ndfl'
+import Statistic from './pages/statistic'
 
 function App() {
+  const history = createBrowserHistory();
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router history={history}>
+        <div className={styles.appGrid}>
+            <Layout histCurrent={history} className={styles.layout} />
+            <Switch>
+              <div className={styles.main}>
+                <Route exact path="/" component={Main} />
+                <Route exact path="/winners" component={Winners} />
+                <Route exact path="/history" component={History} />
+                <Route exact path="/ndfl" component={Ndfl} />
+                <Route exact path="/statistic" component={Statistic} />
+              </div>
+                
+            </Switch>
+        </div>
+      
+      </Router>
   );
 }
 
