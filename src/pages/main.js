@@ -36,14 +36,19 @@ const genHandler = () => {
 
             <h1>История генериций QR</h1>
             <table className='tableWide'>
-                <TableRow data={header} header/>
-                {data.map((el,i)=>{
-                    return(
-                        <TableRow data={el} body/>
-                    )
-                })}
-                
-                <TableRow data={footer} footer/>
+                <thead>
+                    <TableRow data={header} header/>
+                </thead>
+                <tbody>
+                    {data.map((el,i)=>{
+                        return(
+                            <TableRow data={el} body/>
+                        )
+                    })}    
+                </tbody>
+                <tfoot>
+                    <TableRow data={footer} footer/>
+                </tfoot>
             </table>
         </div>
     )

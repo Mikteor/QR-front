@@ -1,7 +1,6 @@
 import { createBrowserHistory } from "history";
-import { useDispatch, useSelector } from 'react-redux';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
   

@@ -37,7 +37,7 @@ const buttons = [
         <div className={styles.container}>
             {buttons.map((el,i)=>{
                 return(
-                    <LayoutButton title={el.title} path={el.path} icon={el.icon} />
+                    <LayoutButton key={'layoutButton'+i} title={el.title} path={el.path} icon={el.icon} />
                 )
             })}
         </div>

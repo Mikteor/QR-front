@@ -45,7 +45,7 @@ const FilterRow = () => {
         <div className='flex-row between'>
             {filters.map((el,i)=>{
                 return(
-                    <div className={styles.filterButton} onClick={el.handler}>
+                    <div key={'ss'+i} className={styles.filterButton} onClick={el.handler}>
                         <img className={styles.filterIcon} src={el.icon}/>
                         {el.title}
                     </div>
