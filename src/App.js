@@ -14,6 +14,7 @@ import Winners from './pages/winners'
 import History from './pages/history'
 import Ndfl from './pages/ndfl'
 import Statistic from './pages/statistic'
+import Validation from "./pages/validation";
 
 function App() {
   const history = createBrowserHistory();
@@ -29,6 +30,7 @@ function App() {
                 <Route exact path="/history" component={History} />
                 <Route exact path="/ndfl" component={Ndfl} />
                 <Route exact path="/statistic" component={Statistic} />
+                <Route exact path='/validation/:link' component={Validation} />
               </div>
                 
             </Switch>
