@@ -1,0 +1,15 @@
+.appGrid{
+    display: grid;
+    grid-template-areas: 
+    'layout main'
+    ;
+    grid-template-columns: max-content 1fr;
+    min-height: 100vh;
+}
+.layout{
+    grid-area: layout;
+}
+.main{
+    grid-area: main;
+    padding: 20px;
+}
