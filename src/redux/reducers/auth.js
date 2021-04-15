@@ -4,7 +4,7 @@ import {TEST, } from '../types'
 
 
 const initialState = {
-    test: null,
+    test: 0,
 }
 
 export default function(state = initialState, action) {
@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
 
     switch(type){
         case TEST:
-         
+         console.log(payload)
             return {
                 ...state,
                 test: payload
