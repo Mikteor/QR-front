@@ -2,22 +2,19 @@ import React, { useState } from 'react'
 import styles from './winnersComponents.module.css'
 import {useDispatch, useSelector} from 'react-redux'
 import {addFilter, removeFilter, updateFilter} from '../../redux/actions/filter'
+import {getUserByPhone} from '../../redux/actions/users'
 
 
 
 const InputFilter = ({el}) => {
     const filterARR = useSelector(state => state.filter.filters)
     const dispatch = useDispatch()
+const[phone, setPhone] = useState('')
 
-    const inputFilterHandler = (filter, inputValue) => {
 
-        console.log(inputValue)
-            const newFilter = {...filter, value: inputValue}
-            if (inputValue.length>0){
-                dispatch(updateFilter(newFilter))
-            }  else if (inputValue==''){
-                dispatch(removeFilter(newFilter))
-            }
+    const inputFilterHandler = (e) => {
+        e.preventDefault()
+        dispatch(getUserByPhone(phone))
         }
 
         return(
@@ -26,8 +23,9 @@ const InputFilter = ({el}) => {
                 <input 
                     type='search'
                     placeholder={el.title}
-                    // onChangeCapture={e=>inputFilterHandler(el.filterProps, e.target.value)}
+                    onChange={e=>setPhone(e.target.value)}
                 />
+                <button onClick={(e)=>inputFilterHandler(e)} >ok</button>
                      
             </div>
         )

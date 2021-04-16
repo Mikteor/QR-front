@@ -1,10 +1,10 @@
-export const header = {
-    fullname: 'Имя Фамилия',
-    phone: 'Телефон',
-    email: 'Почта',
-    rebound:'Погашение',
-    prize_sum: 'Общий выигрыш',
-}
+export const header = [
+    'Имя Фамилия',
+    'Телефон',
+    'Почта',
+    'Погашение',
+    'Общий выигрыш',
+]
 
 export const data = [
     {

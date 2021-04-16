@@ -8,7 +8,7 @@ const TableHeader = ({data}) => {
 
 
     return(
-        <tr className={ styles.tableHeader}>
+        <tr className={styles.tableHeader}>
             {data.map((el,i)=>{
                 return(
                    <td>{el}</td> 

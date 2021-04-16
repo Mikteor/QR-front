@@ -9,7 +9,7 @@ export const filters = [
     {
         title: 'Поиск по имени',
         icon: 'search.png',
-        type: 'input',
+        type: 'boolean',
         filterProps: {
             field: 'name',
             value: ''
@@ -45,7 +45,7 @@ export const filters = [
     {
         title: 'Общий выигрыш',
         icon: 'search.png',
-        type: 'input',
+        type: 'boolean',
         filterProps: {
             field: 'total',
             value: ''
@@ -63,7 +63,7 @@ export const filters = [
     {
         title: 'Сумма выигрыша',
         icon: 'search.png',
-        type: 'input',
+        type: 'boolean',
         filterProps: {
             field: 'sum',
             value: ''
