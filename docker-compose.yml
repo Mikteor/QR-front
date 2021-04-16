@@ -1,0 +1,8 @@
+version: '1'
+services:
+  app:
+    container_name: qr-docs
+    restart: always
+    build: .
+    ports:
+      - '4555:4555'
