@@ -74,7 +74,7 @@ export const filters = [
 const FilterRow = () => {
     const filterARR = useSelector(state => state.filter.filters)
  
-    console.log(filterARR)
+    // console.log(filterARR)
 
 
     return(

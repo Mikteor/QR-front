@@ -1,4 +1,4 @@
-import {GENERATE_QR, GET_ALL_DATA} from '../types'
+import {GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
 
@@ -35,6 +35,23 @@ console.log(err)
       console.log(res.data)
       dispatch({
         type: GENERATE_QR,
+        payload: res.data,
+      });
+    } catch (err) {
+        console.log(err)      
+
+    }
+  }; 
+  
+  
+  export const getActivatedCodes = () => async (dispatch) => {
+    try {
+    //   const res = await innerBackend.get("/codes/generatecodes",formData);
+        const res = await axios.get(ip+`codes/find/claimed`)
+      
+      console.log(res.data)
+      dispatch({
+        type: GET_ACTIVATED_CODES,
         payload: res.data,
       });
     } catch (err) {

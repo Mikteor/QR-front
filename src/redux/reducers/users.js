@@ -23,12 +23,12 @@ export default function(state = initialState, action) {
         case USER_BY_PHONE:
             return {
                 ...state,
-                ndfl: payload
+                userByPhone: payload
             }
         case GET_USERS_NDFL:
             return {
                 ...state,
-                userByPhone: payload
+                ndfl: payload,
             }
             default: 
                 return state;

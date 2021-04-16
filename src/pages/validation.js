@@ -16,14 +16,16 @@ const Validation = ({match}) => {
     }, [])
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(code, match.params)
-    const {link} = match.params;
-
         //server call
-        ValidationCode(code, link);
+        ValidationCode(code);
         
     }
-
+    const player = (e) => {
+        e.preventDefault();
+        //server call
+        makePlayer(code);
+        
+    }
 
     return (
         <div>
@@ -32,6 +34,8 @@ const Validation = ({match}) => {
                 <input type="text" value={code} onChange={(e) => setCode(e.target.value)} />
                 <button type='submit' onClick={(e)=>onSubmit(e)}>submit</button>
             </form>
+            <button onClick={(e)=>player(e)}>создать игрока</button>
+
         </div>
     )
 }
@@ -60,6 +64,24 @@ const ValidationCode = async (code) => {
         const body = {code:code}
        const res = await axios.put(ip+`codes/win/`,body)
     console.log(res.data); //validation status  
+    }
+    catch(err){
+        alert(err.response.data.err); //validation status  
+
+    }
+}
+
+const makePlayer = async (code) => {
+    
+    try{
+        const body =  {
+            phone:'79780003598',
+            email:'vasilisa@gmail.com',
+            firstname:'Василиса',
+            lastname:'Петрова',
+            code:code}
+       const res = await axios.put(ip+`codes/claim`,body)
+    console.log('player',res.data); //validation status  
     }
     catch(err){
         alert(err.response.data.err); //validation status  

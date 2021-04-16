@@ -58,7 +58,7 @@ const TableRow = ({data, header, footer, body}) => {
                     </button>
             }
             {header? data.downloaded : 
-            <td>{data.download_num} раз /{dateDownloaded}</td>
+            <td>{data.download_num} {!footer&&'раз /'}{dateDownloaded}</td>
             }
         </tr>
     )

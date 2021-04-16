@@ -30,7 +30,7 @@ console.log(err)
     try {
        console.log('phone',phone)
     //   const res = await innerBackend.get("/codes/generatecodes",formData);
-        const res = await axios.post(ip+`users/find/${phone}`)
+        const res = await axios.get(ip+`users/find/${phone}`)
       
       console.log(res.data)
       dispatch({
@@ -46,7 +46,7 @@ console.log(err)
   export const getNdflUsers = () => async (dispatch) => {
     try {
     //   const res = await innerBackend.get("/codes/generatecodes",formData);
-        const res = await axios.post(ip+`users/find/ndfl`)
+        const res = await axios.get(ip+`users/find/all/ndfl`)
       
       console.log(res.data)
       dispatch({
@@ -54,7 +54,7 @@ console.log(err)
         payload: res.data,
       });
     } catch (err) {
-        console.log(err)      
+        console.log(err.response.data)      
 
     }
   };

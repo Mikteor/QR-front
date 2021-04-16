@@ -1,12 +1,18 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React, {useEffect} from 'react'
+import {useSelector, useDispatch} from 'react-redux'
 import styles from '../styles/winners.module.css'
 import {header, data} from '../components/winners/data'
 import TableRow from '../components/winners/tableRow'
-import FilterRow, { filters } from '../components/winners/filters'
+import FilterRow from '../components/winners/filters'
+import {getAllUsers,getNdflUsers,getUserByPhone} from '../redux/actions/users'
 
 const Winners = () => {
-const filtesArr = useSelector(state=>state.filter.filters)
+const allUsers = useSelector(state=>state.users.users)
+console.log('users',allUsers)
+const dispatch = useDispatch()
+useEffect(()=>{
+    dispatch(getAllUsers())
+},[])
 
     return(
         <div>
@@ -20,7 +26,7 @@ const filtesArr = useSelector(state=>state.filter.filters)
                     <TableRow data={header} header/>
                 </thead>
                 <tbody>
-                    {data.map((el,i)=>{
+                    {allUsers&&allUsers.map((el,i)=>{
                         return(
                             <TableRow key={'winners'+i} data={el} body/>
                         )

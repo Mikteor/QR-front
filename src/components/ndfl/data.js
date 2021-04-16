@@ -1,9 +1,9 @@
 export const header = {
-    name: 'Имя Фамилия',
+    fullname: 'Имя Фамилия',
     phone: 'Телефон',
     email: 'Почта',
     rebound:'Погашение',
-    total: 'Общий выигрыш',
+    prize_sum: 'Общий выигрыш',
     activation: 'Активация',
     ndfl: 'НДФЛ'
 }

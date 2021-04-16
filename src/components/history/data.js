@@ -3,7 +3,7 @@ export const header = {
     phone: 'Телефон',
     email: 'Почта',
     rebound:'Погашение',
-    total: 'Общий выигрыш',
+    value: 'Выигрыш',
 }
 
 export const data = [
