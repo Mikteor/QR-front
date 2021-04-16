@@ -38,7 +38,7 @@ console.log(err)
         payload: res.data,
       });
     } catch (err) {
-        console.log(err)      
+        alert(err.response.data.err)      
 
     }
   };

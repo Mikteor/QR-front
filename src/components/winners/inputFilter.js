@@ -20,13 +20,13 @@ const[phone, setPhone] = useState('')
         return(
             <div className={styles.filterButton} >
                 <img className={styles.filterIcon} src={el.icon}/>
-                <input 
+                <form onSubmit={inputFilterHandler}>
+                  <input 
                     type='search'
                     placeholder={el.title}
                     onChange={e=>setPhone(e.target.value)}
-                />
-                <button onClick={(e)=>inputFilterHandler(e)} >ok</button>
-                     
+                    />  
+                </form>
             </div>
         )
    
