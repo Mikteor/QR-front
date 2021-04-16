@@ -47,7 +47,7 @@ console.log(err)
   export const getActivatedCodes = () => async (dispatch) => {
     try {
     //   const res = await innerBackend.get("/codes/generatecodes",formData);
-        const res = await axios.get(ip+`codes/find/claimed`)
+        const res = await axios.get(ip+`codes/find/validated`)
       
       console.log(res.data)
       dispatch({

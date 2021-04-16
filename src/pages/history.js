@@ -6,6 +6,7 @@ import {header, data} from '../components/history/data'
 import TableRow from '../components/history/tableRow'
 import FilterRow from '../components/history/filters'
 import { getActivatedCodes } from '../redux/actions/data'
+import TableHeader from '../components/history/tableHeader'
 
 const History = () => {
     const activatedCodes = useSelector(state=>state.data.activated)
@@ -23,7 +24,7 @@ const History = () => {
                 </div>
             <table className='tableWide'>
                 <thead>
-                    <TableRow data={header} header/>
+                    <TableHeader data={header} />
                 </thead>
                 <tbody>
                     {activatedCodes&&activatedCodes.map((el,i)=>{

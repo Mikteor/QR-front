@@ -9,11 +9,11 @@ const TableRow = ({data, header, footer, body}) => {
         <tr className={
             header? styles.tableHeader : 
             styles.tableBody}>
-            <td>{body ? data.player.fullname: data.name}</td>
-            <td>{body ? data.player.phone: data.phone}</td>
-            <td>{body ? data.player.email: data.email}</td>
-            <td>{header? data.rebound: body && data.payed? 'Да' : 'Нет'}</td>
-            <td>{data.value}{body && ' рублей'}</td> 
+            <td style={{color: data.player? 'black':'grey'}}>{data.player ? data.player.fullname:'неизвестно'}</td>
+            <td style={{color: data.player? 'black':'grey'}}>{data.player ?  data.player.phone:  'неизвестно'}</td>
+            <td style={{color: data.player? 'black':'grey'}}>{data.player ?  data.player.email:  'неизвестно'}</td>
+            <td>{data.payed? 'Да' : 'Нет'}</td>
+            <td>{data.value} рублей</td> 
         </tr>
     )
 }
