@@ -1,17 +1,25 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import styles from '../styles/main.module.css'
-import {header,  data} from '../components/main/data'
-import TableRow from '../components/main/tableRow'
 import {getAllData, generateQRs} from '../redux/actions/data'
 
-
+import styles from '../styles/main.module.css'
+import {header} from '../components/main/data'
+import TableRow from '../components/main/tableRow'
+import TableHeader from '../components/main/tableHeader'
+import TableFooter from '../components/main/tableFooter'
 
 
 
 const Main = () => {
+const dispatch = useDispatch()
+
 const allData = useSelector(state => state.data.data)
 const msg = useSelector(state => state.data.msg)
+
+const [formData, setFormData] = useState({
+    price: 0,
+    count: 0,
+})
 
 const footer = allData && {
     date: 'Итого',
@@ -29,16 +37,12 @@ const footer = allData && {
 }
 
 
-const dispatch = useDispatch()
 useEffect(()=>{
-    dispatch(getAllData())
+    !allData && dispatch(getAllData())
 },[])
 
 
-const [formData, setFormData] = useState({
-    price: 0,
-    count: 0,
-})
+
 const genHandler = () => {
     dispatch(generateQRs(formData))
 }
@@ -71,17 +75,17 @@ const genHandler = () => {
             <h1>История генериций QR</h1>
             <table className='tableWide'>
                 <thead>
-                    <TableRow data={header} header/>
+                    <TableHeader data={header}/>
                 </thead>
                 <tbody>
                     {allData&&allData.map((el,i)=>{
                         return(
-                            <TableRow data={el} body/>
+                            <TableRow data={el}/>
                         )
                     })}    
                 </tbody>
                 <tfoot>
-                    <TableRow data={footer} footer/>
+                    {allData && <TableFooter data={footer}/>}
                 </tfoot>
             </table>
         </div>

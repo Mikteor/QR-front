@@ -11,7 +11,7 @@ const allUsers = useSelector(state=>state.users.users)
 console.log('users',allUsers)
 const dispatch = useDispatch()
 useEffect(()=>{
-    dispatch(getAllUsers())
+   !allUsers && dispatch(getAllUsers())
 },[])
 
     return(

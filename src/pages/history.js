@@ -12,7 +12,7 @@ const History = () => {
     console.log('ndfl users',activatedCodes)
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(getActivatedCodes())
+       !activatedCodes && dispatch(getActivatedCodes())
     },[])
     return(
         <div>

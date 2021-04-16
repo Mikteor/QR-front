@@ -4,7 +4,7 @@ import styles from './mainComponents.module.css'
 import axios from "axios";
 let backend = process.env.REACT_APP_IP;
 
-const TableRow = ({data, header, footer, body}) => {
+const TableRow = ({data, footer}) => {
 
     const [date,setDate] = useState('')
     const [dateDownloaded,setDateDownloaded] = useState('')
@@ -42,24 +42,15 @@ const TableRow = ({data, header, footer, body}) => {
     }
 
     return(
-        <tr className={
-            header? styles.tableHeader : 
-            footer? styles.tableFooter : 
-            styles.tableBody}>
-            <td>{!body? data.date: date}</td>
+        <tr className={styles.tableBody}>
+            <td>{date}</td>
             <td>{data.amount}</td>
-            <td>{data.value}{!header && ' рублей'}</td>
-            <td>{data.amount_validated}{body && '/'+data.amount}</td>
-            {data.urlHeader?
-            <td>{data.urlHeader}</td> :
-            data.archive_path &&
-            <button onClick={() => handleDownload(data._id)} download>
-                      скачать
-                    </button>
-            }
-            {header? data.downloaded : 
-            <td>{data.download_num} {!footer&&'раз /'}{dateDownloaded}</td>
-            }
+            <td>{data.value} рублей</td>
+            <td>{data.amount_validated}/{data.amount}</td>
+            
+            <button onClick={() => handleDownload(data._id)} download>скачать</button>
+            
+            <td>{data.download_num} раз / {dateDownloaded}</td>
         </tr>
     )
 }

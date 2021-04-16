@@ -11,7 +11,7 @@ const Ndfl = () => {
     console.log('ndfl users',ndflUsers)
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(getNdflUsers())
+       !ndflUsers && dispatch(getNdflUsers())
     },[])
     return(
         <div>
