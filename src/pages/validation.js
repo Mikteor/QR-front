@@ -8,7 +8,7 @@ const ip = process.env.REACT_APP_IP;
 
 const Validation = ({match}) => {
     const {link} = match.params;
-    // console.log(match.params)
+    console.log(match.params)
     const [code, setCode] = useState('')
     useEffect(() => {
         ServerCall(link)
@@ -16,8 +16,11 @@ const Validation = ({match}) => {
     }, [])
     const onSubmit = (e) => {
         e.preventDefault();
+        console.log(code, match.params)
+    const {link} = match.params;
+
         //server call
-        ValidationCode(code);
+        ValidationCode(code, link);
         
     }
 
@@ -27,6 +30,7 @@ const Validation = ({match}) => {
             <h1> hello world </h1>
             <form onSubmit={onSubmit}>
                 <input type="text" value={code} onChange={(e) => setCode(e.target.value)} />
+                <button type='submit' onClick={(e)=>onSubmit(e)}>submit</button>
             </form>
         </div>
     )
@@ -38,13 +42,27 @@ export default Validation
 
 
 const ServerCall = async (link) => {
-    const res = await axios.get(ip + `codes/qr/${link}`);
-    alert(res.data.msg);
+    try{
+        console.log(link)
+        const res = await axios.get(ip + `codes/qr/${link}`);
+        alert(res.data.msg); 
+    }
+   catch(err){
+       alert(err.response.data.err)
+   }
 
 }
 
 
 const ValidationCode = async (code) => {
-    const res = await axios.put(ip+`codes/win/${code}`)
-    console.log(res.data); //validation status
+    
+    try{
+        const body = {code:code}
+       const res = await axios.put(ip+`codes/win/`,body)
+    console.log(res.data); //validation status  
+    }
+    catch(err){
+        alert(err.response.data.err); //validation status  
+
+    }
 }

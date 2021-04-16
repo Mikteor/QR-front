@@ -1,8 +1,8 @@
 export const header = {
     date: 'Дата генерации',
-    number: 'Количество QR',
+    amount: 'Количество QR',
     value: 'Сумма одного QR кода',
-    used: 'Использовано',
+    amount_validated: 'Использовано',
     urlHeader: 'Скачать архив',
     downloaded: 'Скачан',
 }
@@ -38,7 +38,7 @@ export const data = [
 export const footer = {
     date: 'Итого',
     number: data.reduce((sum,cur)=>{
-        return sum+cur.number
+        return sum+cur.amount
     },0),
     value: data.reduce((sum,cur)=>{
         return sum+cur.value

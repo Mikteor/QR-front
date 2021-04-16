@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 
-export const url = process.env.TEST_IP;
+export const url = process.env.REACT_APP_IP;
 
 
 
