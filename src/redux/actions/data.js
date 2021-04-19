@@ -1,6 +1,7 @@
 import {GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
+import { createBrowserHistory } from "history";
 
 
 
@@ -15,7 +16,11 @@ export const getAllBundles = () => async (dispatch) => {
         payload: res.data,
       });
     } catch (err) {
-console.log(err)      
+  const history = createBrowserHistory();
+   history.replace('/auth')
+console.log(err)     
+
+ 
     }
   };
 
@@ -66,3 +71,25 @@ console.log(err)
 
     }
   };
+
+  export const downloadBundle = (id) => async (dispatch) => {
+    try {
+
+        const res = await innerBackend.get(`bundles/download/${id}`)
+        const data = res.data
+
+
+      const downloadUrl = window.URL.createObjectURL(new Blob([res]));
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.setAttribute("download", "file.zip"); //any other extension
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+
+    } catch (err) {
+        console.log(err)      
+      }
+  };
+

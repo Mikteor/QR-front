@@ -35,11 +35,13 @@ export const login = (formdata) => async (dispatch) => {
     });
 
     setAuthToken(res.data.token);
+    innerBackend(res.data.token);
 
   } catch (err) {
-console.log(err)    
-alert(err.response.data.errors[0].err)
-console.log(err.response.data)      
+
+    console.log(err)    
+    alert(err.response.data.errors[0].err)
+    console.log(err.response.data)      
 
   }
 };
