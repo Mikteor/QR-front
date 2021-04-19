@@ -4,16 +4,15 @@ import styles from '../styles/winners.module.css'
 import {header, data} from '../components/winners/data'
 import TableRow from '../components/winners/tableRow'
 import FilterRow from '../components/winners/filters'
-import {getAllUsers,getNdflUsers,getUserByPhone} from '../redux/actions/users'
+import {getActivatedCodes} from '../redux/actions/data'
 import TableHeader from '../components/winners/tableHeader'
 
 const Winners = () => {
-const allUsers = useSelector(state=>state.users.users)
+const activatedCodes = useSelector(state=>state.data.activated)
 const phoneUser = useSelector(state=> state.users.userByPhone)
-console.log('users',allUsers)
 const dispatch = useDispatch()
 useEffect(()=>{
-   !allUsers && dispatch(getAllUsers())
+   !activatedCodes && dispatch(getActivatedCodes())
 },[])
 
     return(
@@ -36,7 +35,7 @@ useEffect(()=>{
                     <TableHeader data={header}/>
                 </thead>
                 <tbody>
-                    {allUsers&&allUsers.map((el,i)=>{
+                    {activatedCodes&&activatedCodes.map((el,i)=>{
                         return(
                             <TableRow key={'winners'+i} data={el} body/>
                         )

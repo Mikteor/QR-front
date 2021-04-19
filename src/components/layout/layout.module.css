@@ -4,6 +4,7 @@
     flex-direction: column;
     padding: 20px;
     padding-top: 55px;
+    min-height: 100vh;
 }
 .button{
     display: flex;
@@ -15,4 +16,14 @@
 .btnIcon{
     height: 24px;
     margin-right: 15px;
+}
+
+.headerContainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: black;
+}
+.exit{
+    color: white;
 }

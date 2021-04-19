@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react'
 import styles from './mainComponents.module.css'
 // const ip = process.env.REACT_APP_IP
 import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { downloadBundle } from '../../redux/actions/data';
 let backend = process.env.REACT_APP_IP;
 
 const TableRow = ({data, footer}) => {
+    const dispatch = useDispatch()
 
     const [date,setDate] = useState('')
     const [dateDownloaded,setDateDownloaded] = useState('')
@@ -33,7 +36,8 @@ const TableRow = ({data, footer}) => {
         }
     },[])
     const handleDownload = (id) => {
-        DownloadFile(id)
+        // DownloadFile(id)
+        dispatch(downloadBundle(id))
       }
     if(!data){
         return(

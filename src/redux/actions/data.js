@@ -1,24 +1,36 @@
-import {GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA} from '../types'
+import {GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
-
-import axios from "axios";
-const ip = process.env.REACT_APP_IP
-console.log(ip)
-
-const ValidationCode = async (code) => {
-    const res = await axios.put(ip+`codes/win/${code}`)
-    console.log(res.data); //validation status
-}
+import { createBrowserHistory } from "history";
 
 
-export const getAllData = () => async (dispatch) => {
+
+
+export const getAllBundles = () => async (dispatch) => {
     try {
-    const res = await axios.get(ip+`bundles/find/all`)
+    const res = await innerBackend.get(`bundles/find/all`)
 
       console.log(res.data)
       dispatch({
         type: GET_ALL_DATA,
+        payload: res.data,
+      });
+    } catch (err) {
+  const history = createBrowserHistory();
+   history.replace('/auth')
+console.log(err)     
+
+ 
+    }
+  };
+
+export const getAllQRs = () => async (dispatch) => {
+    try {
+    const res = await innerBackend.get(`codes/find/all`)
+
+      console.log(res.data)
+      dispatch({
+        type: GET_ALL_QRS,
         payload: res.data,
       });
     } catch (err) {
@@ -30,7 +42,7 @@ console.log(err)
     try {
        console.log(formData)
     //   const res = await innerBackend.get("/codes/generatecodes",formData);
-        const res = await axios.post(ip+`codes/generatecodes`,formData)
+        const res = await innerBackend.post(`codes/generatecodes`,formData)
       
       console.log(res.data)
       dispatch({
@@ -47,7 +59,7 @@ console.log(err)
   export const getActivatedCodes = () => async (dispatch) => {
     try {
     //   const res = await innerBackend.get("/codes/generatecodes",formData);
-        const res = await axios.get(ip+`codes/find/validated`)
+        const res = await innerBackend.get(`codes/find/validated`)
       
       console.log(res.data)
       dispatch({
@@ -59,3 +71,25 @@ console.log(err)
 
     }
   };
+
+  export const downloadBundle = (id) => async (dispatch) => {
+    try {
+
+        const res = await innerBackend.get(`bundles/download/${id}`)
+        const data = res.data
+
+
+      const downloadUrl = window.URL.createObjectURL(new Blob([res]));
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.setAttribute("download", "file.zip"); //any other extension
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+
+    } catch (err) {
+        console.log(err)      
+      }
+  };
+

@@ -5,15 +5,15 @@ import styles from '../styles/history.module.css'
 import {header, data} from '../components/history/data'
 import TableRow from '../components/history/tableRow'
 import FilterRow from '../components/history/filters'
-import { getActivatedCodes } from '../redux/actions/data'
+import { getAllQRs } from '../redux/actions/data'
 import TableHeader from '../components/history/tableHeader'
 
 const History = () => {
-    const activatedCodes = useSelector(state=>state.data.activated)
-    console.log('ndfl users',activatedCodes)
+    const allQRs = useSelector(state=>state.data.allQRs)
+    console.log('qrs all ',allQRs)
     const dispatch = useDispatch()
     useEffect(()=>{
-       !activatedCodes && dispatch(getActivatedCodes())
+       !allQRs && dispatch(getAllQRs())
     },[])
     return(
         <div>
@@ -27,7 +27,7 @@ const History = () => {
                     <TableHeader data={header} />
                 </thead>
                 <tbody>
-                    {activatedCodes&&activatedCodes.map((el,i)=>{
+                    {allQRs&&allQRs.map((el,i)=>{
                         return(
                             <TableRow data={el} body/>
                         )
