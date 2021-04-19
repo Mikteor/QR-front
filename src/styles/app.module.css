@@ -1,9 +1,11 @@
 .appGrid{
     display: grid;
     grid-template-areas: 
+    'header header'
     'layout main'
     ;
     grid-template-columns: max-content 1fr;
+    grid-template-rows: max-content 1fr;
     min-height: 100vh;
 }
 .layout{
@@ -12,4 +14,7 @@
 .main{
     grid-area: main;
     padding: 20px;
+}
+.header{
+    grid-area: header;
 }

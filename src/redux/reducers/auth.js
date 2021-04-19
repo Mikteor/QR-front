@@ -1,10 +1,10 @@
 
-import {TEST, } from '../types'
+import {TEST, LOGIN } from '../types'
 
 
 
 const initialState = {
-    test: 0,
+    token: 0,
 }
 
 export default function(state = initialState, action) {
@@ -17,7 +17,17 @@ export default function(state = initialState, action) {
          console.log(payload)
             return {
                 ...state,
-                test: payload
+                // test: payload
+            }
+        case LOGIN:
+             localStorage.setItem('token', payload.token);
+            //  console.log(localStorage.token, 'NEW TOKEN ')
+            return {
+                ...state,
+                // loaded: true,
+                token: true,
+                // error: payload.err,
+            
             }
             
             default: 
