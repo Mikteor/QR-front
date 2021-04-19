@@ -9,12 +9,12 @@ const TableRow = ({data, header, bold, body}) => {
         <tr className={ 
             bold? styles.tableBold :
             styles.tableBody}>
-            <td>{data.fullname}</td>
-            <td>{data.phone}</td>
-            <td>{data.email}</td>
+            <td style={{color: data.player? 'black':'grey'}}>{data.player ? data.player.fullname:'неизвестно'}</td>
+            <td style={{color: data.player? 'black':'grey'}}>{data.player ?  data.player.phone:  'неизвестно'}</td>
+            <td style={{color: data.player? 'black':'grey'}}>{data.player ?  data.player.email:  'неизвестно'}</td>
             {/* <td>{data.payed? 'Да' : 'Нет'}</td> */}
             <td></td>
-            <td>{data.prize_sum}{body && ' рублей'}</td> 
+            <td>{data.value} рублей</td> 
         </tr>
     )
 }

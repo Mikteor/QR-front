@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getAllData, generateQRs} from '../redux/actions/data'
+import {getAllBundles, generateQRs} from '../redux/actions/data'
 
 import styles from '../styles/main.module.css'
 import {header} from '../components/main/data'
@@ -38,7 +38,7 @@ const footer = allData && {
 
 
 useEffect(()=>{
-    !allData && dispatch(getAllData())
+    !allData && dispatch(getAllBundles())
 },[])
 
 

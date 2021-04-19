@@ -1,5 +1,5 @@
 
-import {GET_ALL_DATA,GENERATE_QR, GET_ACTIVATED_CODES } from '../types'
+import {GET_ALL_DATA,GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_QRS } from '../types'
 
 
 
@@ -7,6 +7,7 @@ const initialState = {
     data: null,
     msg: null,
     activated: null,
+    allQRs: null,
 }
 
 export default function(state = initialState, action) {
@@ -26,6 +27,11 @@ console.log('get data',payload)
             return {
                 ...state,
                 activated: payload
+            }
+        case GET_ALL_QRS:
+            return {
+                ...state,
+                allQRs: payload
             }
         case GENERATE_QR:
             const newData = [...state.data, payload]
