@@ -4,7 +4,7 @@
     flex-direction: column;
     padding: 20px;
     padding-top: 55px;
-    min-height: 100vh;
+    height: 100%;
 }
 .button{
     display: flex;
@@ -21,10 +21,18 @@
 .headerContainer{
     display: flex;
     justify-content: space-between;
-    padding: 15px;
+    align-items: center;
+    padding: 10px;
+    padding-bottom: 15px;
+
     background-color: black;
 }
 .exit{
     color: white;
     text-decoration: none;
+    font-size: 20px;
+}
+.mainIcon{
+    height: 40px;
+    width: 40px;
 }

@@ -1,0 +1,23 @@
+.tableHeader{
+    color: grey;
+}
+.tableBody{
+    background-color: white;
+}
+.tableBody:hover{
+    background-color: rgb(194, 194, 194);
+}
+.tableFooter{
+    font-weight: bold;
+}
+
+
+.filterButton{
+    display: flex;
+    align-items: center;
+    color: grey;
+}
+.filterIcon{
+    height: 20px;
+    margin-right: 5px;
+}
