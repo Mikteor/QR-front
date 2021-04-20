@@ -1,4 +1,4 @@
-import {GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS} from '../types'
+import {GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS, ONE_BUNDLE} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
 import { createBrowserHistory } from "history";
@@ -36,6 +36,16 @@ export const getAllBundles = () => async (dispatch) => {
  
     }
   };
+
+export const oneBundle = (data) => async (dispatch) => {
+  
+
+        dispatch({
+          type: ONE_BUNDLE,
+          payload: data,
+        });
+
+    };
 
 export const getAllQRs = () => async (dispatch) => {
     try {

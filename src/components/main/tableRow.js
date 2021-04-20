@@ -3,7 +3,7 @@ import styles from './mainComponents.module.css'
 // const ip = process.env.REACT_APP_IP
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { downloadBundle } from '../../redux/actions/data';
+import { downloadBundle, oneBundle } from '../../redux/actions/data';
 let backend = process.env.REACT_APP_IP;
 
 const TableRow = ({data, history}) => {
@@ -43,6 +43,7 @@ const TableRow = ({data, history}) => {
     const rowClick = () => {
         // DownloadFile(id)
        history.replace(`bundle/${data._id}`)
+       dispatch(oneBundle(data))
       }
 
 

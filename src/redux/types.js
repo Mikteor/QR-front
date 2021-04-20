@@ -7,6 +7,7 @@ export const LOGIN ='login_to_apk'
 
 // data
 export const GET_ALL_DATA ='get_all_data'
+export const ONE_BUNDLE ='one_bundle'
 export const GENERATE_QR ='generate_qr'
 export const GET_ACTIVATED_CODES = 'get_activated_codes'
 export const GET_ALL_QRS = 'get_all_qrs'
