@@ -36,14 +36,14 @@ const TableRow = ({data, history}) => {
         }
     },[])
     const handleDownload = (e) => {
-        // DownloadFile(id)
+        // DownloadFile(data._id)
         e.preventDefault()
         dispatch(downloadBundle(data._id))
       }
     const rowClick = () => {
         // DownloadFile(id)
        history.replace(`bundle/${data._id}`)
-       dispatch(oneBundle(data))
+       dispatch(oneBundle(data._id))
       }
 
 
