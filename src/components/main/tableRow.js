@@ -104,7 +104,6 @@ export default TableRow
 
 
 function DownloadFile(id) {
-    console.log(id);
     const method = "GET";
     const url = backend + `bundles/download/${id}`;
     const headers = {
