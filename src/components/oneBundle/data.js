@@ -8,6 +8,7 @@ export const header = [
 ]
 
 export const moreHeader = [
+    'Дата валидации',
     'Имя Фамилия',
     'Телефон',
     'Статус активации',

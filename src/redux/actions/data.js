@@ -41,7 +41,7 @@ export const getAllBundles = () => async (dispatch) => {
 
 export const oneBundle = (id) => async (dispatch) => {
    try {
-    const res = await innerBackend.get(`/bundles/find/id/${id}`)
+    const res = await innerBackend.get(`bundles/find/id/${id}`)
 
       console.log(res.data)
      

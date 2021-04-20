@@ -73,11 +73,11 @@ const TableRow = ({data, history}) => {
     return (
       <>{data.prizes.map((data,i)=>{
         return(
-            <tr className={styles.tableBody}>
-                <td>{data.date.split('T')[0]}</td>
-                <td style={{color: data.player? 'black':'grey'}}>{data.player ? data.player.fullname: data.validated? 'неизвестно':'N/P'}</td>
-                <td style={{color: data.player? 'black':'grey'}}>{data.player ?  data.player.phone:  data.validated?  'неизвестно':'N/P'}</td>
-                <td style={{color: data.player? 'black':'grey'}}>{data.player ?  data.player.email:  data.validated?  'неизвестно':'N/P'}</td>
+            <tr className={styles.tableBody} style={{color: data.validated? 'black':'grey'}}>
+                <td>{data.activation_date ? data.activation_date: data.validated ? 'неизвестно':'N/P'}</td>
+                <td>{data.player ? data.player.fullname: data.validated? 'неизвестно':'N/P'}</td>
+                <td>{data.player ?  data.player.phone:  data.validated?  'неизвестно':'N/P'}</td>
+                <td>{data.validated? 'Да' : 'Нет'}</td>
                 <td>{data.payed? 'Да' : 'Нет'}</td>
                 <td>{data.value} рублей</td> 
             </tr>
