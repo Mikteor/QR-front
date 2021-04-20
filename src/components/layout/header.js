@@ -13,7 +13,7 @@ const Layout = ({history}) => {
 
     return(
         <div className={styles.headerContainer}>
-            <div></div>
+            <img src='/qr-code-outline.png' className={styles.mainIcon} />
             <NavLink to='/auth' onClick={()=>exit()} className={styles.exit}>Выйти</NavLink>
         </div>
     )

@@ -1,70 +1,65 @@
 import React, {useEffect, useState} from 'react'
-import {useDispatch,useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
-import styles from '../styles/history.module.css'
-import {header, data} from '../components/history/data'
-import TableRow from '../components/history/tableRow'
-import FilterRow from '../components/history/filters'
-import { getAllQRs } from '../redux/actions/data'
-import TableHeader from '../components/history/tableHeader'
-import { downloadBundle, oneBundle } from '../redux/actions/data';
+import styles from '../styles/bundle.module.css'
+import {header, moreHeader} from '../components/oneBundle/data'
+import TableRow from '../components/oneBundle/tableRow'
+import TableHeader from '../components/oneBundle/tableHeader'
+import TableMoreRow from '../components/oneBundle/tableMoreRow'
+import TableMoreHeader from '../components/oneBundle/tableMoreHeader'
+import {oneBundle} from '../redux/actions/data'
+import FilterRow from '../components/oneBundle/filters'
+const Bundle = ({match, history}) => {
+const dispatch = useDispatch()
 
-const Bundle = ({match}) => {
-    const dispatch = useDispatch()
 const data = useSelector(state => state.data.oneBundle)
 !data && dispatch(oneBundle(match.params.id))
+console.log('ddada',data)
 
 
-console.log('match params',match.params)
-const [date,setDate] = useState('')
-const [dateDownloaded,setDateDownloaded] = useState('')
-useEffect(()=>{
-    if(data){
-    const newDate = new Date(data.date)
-    const day = newDate.getDay()
-    const month = newDate.getMonth()
-    const year = newDate.getFullYear()
-    const hours = newDate.getHours()
-    const minutes = newDate.getMinutes()
-    const zeroMinutes = minutes>9? minutes : '0'+minutes
-    setDate(day+'.'+month+'.'+year+'/'+hours+':'+zeroMinutes)
-    }
-},[])
-useEffect(()=>{
-    if(data && data.download_date){
-    const newDate = new Date(data.download_date)
-    const day = newDate.getDay()
-    const month = newDate.getMonth()
-    const year = newDate.getFullYear()
-    const hours = newDate.getHours()
-    const minutes = newDate.getMinutes()
-    const zeroMinutes = minutes>9? minutes : '0'+minutes
-    setDateDownloaded(day+'.'+month+'.'+year+'/'+hours+':'+zeroMinutes)
-    }
-},[])
-const handleDownload = (e) => {
-    // DownloadFile(id)
-    e.preventDefault()
-    dispatch(downloadBundle(data._id))
-  }
-  if(!data){
-      return <div>loading...</div>
-  }
     return(
-        <table>
-            <tbody>
-                <tr className={styles.tableBody}>
-                    <td>{date}</td>
-                    <td>{data.amount}</td>
-                    <td>{data.value} рублей</td>
-                    <td>{data.amount_validated}/{data.amount}</td>
-                    
-                    <button onClick={(e) => handleDownload(e)} download>скачать</button>
-                    
-                    <td>{data.download_num} раз / {dateDownloaded}</td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+        
+
+            <h1>Подробнее о партии</h1>
+            <table className='tableWide'>
+                <thead>
+                    <TableHeader data={header}/>
+                </thead>
+                <tbody>
+                    {data&&
+                        <TableRow data={data} history={history}/>
+                    }  
+                </tbody>
+            </table>
+
+            <div className={styles.filterContainer}>
+                <FilterRow />
+                <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="table-to-xls"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download as XLS"
+                />
+            </div>
+
+            <table className='tableWide'>
+                <thead>
+                    <TableMoreHeader data={moreHeader}/>
+                </thead>
+                <tbody>
+                    {data&&
+                        <TableMoreRow data={data} history={history}/>
+                    }  
+                </tbody>
+            </table>
+            
+        </div>
     )
 }
 export default Bundle
+
+
