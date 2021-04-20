@@ -9,10 +9,13 @@ import { getAllQRs } from '../redux/actions/data'
 import TableHeader from '../components/history/tableHeader'
 import { downloadBundle, oneBundle } from '../redux/actions/data';
 
-const Bundle = () => {
+const Bundle = ({match}) => {
     const dispatch = useDispatch()
 const data = useSelector(state => state.data.oneBundle)
+!data && dispatch(oneBundle(match.params.id))
 
+
+console.log('match params',match.params)
 const [date,setDate] = useState('')
 const [dateDownloaded,setDateDownloaded] = useState('')
 useEffect(()=>{
@@ -43,6 +46,9 @@ const handleDownload = (e) => {
     // DownloadFile(id)
     e.preventDefault()
     dispatch(downloadBundle(data._id))
+  }
+  if(!data){
+      return <div>loading...</div>
   }
     return(
         <table>
