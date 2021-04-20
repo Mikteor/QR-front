@@ -4,37 +4,37 @@ import styles from './ndflComponents.module.css'
 export const filters = [
     {
         title: 'Поиск по имени',
-        icon: 'search.png',
+        icon: '/search.png',
         handler: ()=>console.log('hi')
     },
     {
         title: 'Телефон',
-        icon: 'search.png',
+        icon: '/search.png',
         handler: ()=>console.log('hi')
     },
     {
         title: 'Статус активации',
-        icon: 'search.png',
+        icon: '/search.png',
         handler: ()=>console.log('hi')
     },
     {
         title: 'Погашение',
-        icon: 'search.png',
+        icon: '/search.png',
         handler: ()=>console.log('hi')
     },
     {
         title: 'Общий выигрыш',
-        icon: 'search.png',
+        icon: '/search.png',
         handler: ()=>console.log('hi')
     },
     {
         title: 'Печать',
-        icon: 'search.png',
+        icon: '/search.png',
         handler: ()=>console.log('hi')
     },
     {
         title: 'Сумма выигрыша',
-        icon: 'search.png',
+        icon: '/search.png',
         handler: ()=>console.log('hi')
     },
 ]

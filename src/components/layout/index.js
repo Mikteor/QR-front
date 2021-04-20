@@ -31,26 +31,26 @@ const buttons = [
   {
     title: "Генерация QR",
     path: "/",
-    icon: "home.png",
+    icon: "/home.png",
   },
   {
     title: "Победители",
     path: "/winners",
-    icon: "home.png",
+    icon: "/home.png",
   },
   {
     title: "Статистика",
     path: "/statistic",
-    icon: "home.png",
+    icon: "/home.png",
   },
   {
     title: "НДФЛ",
     path: "/ndfl",
-    icon: "home.png",
+    icon: "/home.png",
   },
   {
     title: "История",
     path: "/history",
-    icon: "home.png",
+    icon: "/home.png",
   },
 ];
