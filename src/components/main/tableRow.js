@@ -38,7 +38,8 @@ const TableRow = ({data, history}) => {
     const handleDownload = (e) => {
         // DownloadFile(data._id)
         e.preventDefault()
-        dispatch(downloadBundle(data._id))
+        DownloadFile(data._id)
+        // dispatch(downloadBundle(data._id))
       }
     const rowClick = () => {
         // DownloadFile(id)
@@ -105,10 +106,14 @@ function DownloadFile(id) {
     console.log(id);
     const method = "GET";
     const url = backend + `bundles/download/${id}`;
+    const headers = {
+        'auth-token': localStorage.token
+    }
     axios
       .request({
         url,
         method,
+        headers,
         responseType: "blob", //important
       })
       .then(({ data }) => {
