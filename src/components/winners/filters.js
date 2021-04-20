@@ -8,7 +8,7 @@ import InputFilter from './inputFilter'
 export const filters = [
     {
         title: 'Поиск по имени',
-        icon: 'search.png',
+        icon: '/search.png',
         type: 'boolean',
         filterProps: {
             field: 'name',
@@ -17,7 +17,7 @@ export const filters = [
     },
     {
         title: 'Телефон',
-        icon: 'search.png',
+        icon: '/search.png',
         type: 'input',
         filterProps: {
             field: 'phone',
@@ -26,7 +26,7 @@ export const filters = [
     },
     {
         title: 'Статус активации',
-        icon: 'search.png',
+        icon: '/search.png',
         type: 'boolean',
         filterProps: {
             field: 'activation',
@@ -35,7 +35,7 @@ export const filters = [
     },
     {
         title: 'Погашение',
-        icon: 'search.png',
+        icon: '/search.png',
         type: 'boolean',
         filterProps: {
             field: 'rebound',
@@ -44,7 +44,7 @@ export const filters = [
     },
     {
         title: 'Общий выигрыш',
-        icon: 'search.png',
+        icon: '/search.png',
         type: 'boolean',
         filterProps: {
             field: 'total',
@@ -53,7 +53,7 @@ export const filters = [
     },
     {
         title: 'Печать',
-        icon: 'search.png',
+        icon: '/search.png',
         type: 'boolean',
         filterProps: {
             field: 'print',
@@ -62,7 +62,7 @@ export const filters = [
     },
     {
         title: 'Сумма выигрыша',
-        icon: 'search.png',
+        icon: '/search.png',
         type: 'boolean',
         filterProps: {
             field: 'sum',
