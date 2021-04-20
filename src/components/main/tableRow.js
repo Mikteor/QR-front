@@ -86,6 +86,7 @@ const TableRow = ({data, history}) => {
         <td>
           {data.download_num} раз / {dateDownloaded}
         </td>
+        <td>{data.printed ? <p>Отправлен</p> : <p>Не отправлен</p>}</td>
         <td>
           <select onChange={handleSubmit}>
             <option>опции</option>
