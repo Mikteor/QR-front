@@ -7,6 +7,11 @@ import { createBrowserHistory } from "history";
 
 
 export const getAllBundles = () => async (dispatch) => {
+  
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+    innerBackend(localStorage.token);
+  }
     try {
     const res = await innerBackend.get(`bundles/find/all`)
 
@@ -16,9 +21,17 @@ export const getAllBundles = () => async (dispatch) => {
         payload: res.data,
       });
     } catch (err) {
-  const history = createBrowserHistory();
-   history.replace('/auth')
-console.log(err)     
+
+      if(err.response.status==401){
+        const history = createBrowserHistory();
+              history.replace('/auth')
+              window.location.reload();
+              alert('Ошибка авторизации')
+              localStorage.removeItem('token')
+      } 
+
+
+      console.log(err.response)     
 
  
     }

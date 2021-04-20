@@ -30,6 +30,9 @@ export default function(state = initialState, action) {
              localStorage.setItem('token', payload.token);
              const history = createBrowserHistory()
              history.replace('./')
+             history.go()
+             
+            //  window.location.reload()
             //  console.log(localStorage.token, 'NEW TOKEN ')
             return {
                 ...state,

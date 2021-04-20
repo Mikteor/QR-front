@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { createBrowserHistory } from "history";
 import {
-  Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   
@@ -28,17 +28,16 @@ function App() {
   const dispatch = useDispatch()
   const history = createBrowserHistory();
   const auth = useSelector(state=>state.auth.isAuth)
-  const token = localStorage.token
-  console.log('token: ', token)
+  // const token = localStorage.token
+  // console.log('token: ', token)
 
   useEffect(() => {
     setAuthToken(localStorage.token)
     if(localStorage.token){
       dispatch(getAllBundles());
-
-
     }
   }, [])
+
 
 
   return (
@@ -52,7 +51,7 @@ function App() {
                 <Layout histCurrent={history}  />
               </div>
               <div  className={styles.header}>
-                <Header histCurrent={history}/>
+                <Header history={history}/>
               </div>
                 <div className={styles.main}>
                   <Route exact path="/" component={Main} />
