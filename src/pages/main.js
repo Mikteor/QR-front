@@ -38,7 +38,7 @@ const footer = allData && {
 
 
 useEffect(()=>{
-    !allData && dispatch(getAllBundles())
+    !allData && localStorage.token && dispatch(getAllBundles())
 },[])
 
 

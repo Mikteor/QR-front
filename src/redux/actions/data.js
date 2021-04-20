@@ -1,11 +1,17 @@
 import {GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
+import { createBrowserHistory } from "history";
 
 
 
 
 export const getAllBundles = () => async (dispatch) => {
+  
+  if (localStorage.token) {
+    setAuthToken(localStorage.token);
+    innerBackend(localStorage.token);
+  }
     try {
     const res = await innerBackend.get(`bundles/find/all`)
 
@@ -15,7 +21,19 @@ export const getAllBundles = () => async (dispatch) => {
         payload: res.data,
       });
     } catch (err) {
-console.log(err)      
+
+      if(err.response.status==401){
+        const history = createBrowserHistory();
+              history.replace('/auth')
+              window.location.reload();
+              alert('Ошибка авторизации')
+              localStorage.removeItem('token')
+      } 
+
+
+      console.log(err.response)     
+
+ 
     }
   };
 
@@ -66,3 +84,25 @@ console.log(err)
 
     }
   };
+
+  export const downloadBundle = (id) => async (dispatch) => {
+    try {
+
+        const res = await innerBackend.get(`bundles/download/${id}`)
+        const data = res.data
+
+
+      const downloadUrl = window.URL.createObjectURL(new Blob([res]));
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.setAttribute("download", "file.zip"); //any other extension
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+
+
+    } catch (err) {
+        console.log(err)      
+      }
+  };
+

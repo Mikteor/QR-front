@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import {setAuthToken} from './components/utils/axios'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { createBrowserHistory } from "history";
 import {
-  Router,
+  BrowserRouter as Router,
   Switch,
   Route,
   
@@ -27,31 +27,32 @@ import { getAllBundles } from "./redux/actions/data";
 function App() {
   const dispatch = useDispatch()
   const history = createBrowserHistory();
-  const token = localStorage.token
-  console.log('token: ', token)
+  const auth = useSelector(state=>state.auth.isAuth)
+  // const token = localStorage.token
+  // console.log('token: ', token)
 
   useEffect(() => {
     setAuthToken(localStorage.token)
     if(localStorage.token){
       dispatch(getAllBundles());
-
-
     }
   }, [])
+
 
 
   return (
       <Router history={history}>
 
-        {!token? <Login /> :
+        <Switch>
+          <Route exact path="/auth" component={Login} />
+        
           <div className={styles.appGrid}>
               <div className={styles.layout}>
                 <Layout histCurrent={history}  />
               </div>
               <div  className={styles.header}>
-                <Header histCurrent={history}/>
+                <Header history={history}/>
               </div>
-              <Switch>
                 <div className={styles.main}>
                   <Route exact path="/" component={Main} />
                   <Route exact path="/winners" component={Winners} />
@@ -60,10 +61,9 @@ function App() {
                   <Route exact path="/statistic" component={Statistic} />
                   <Route exact path='/validation/:link' component={Validation} />
                 </div>
-                  
-              </Switch>
           </div>
-        }
+        </Switch>
+        
       </Router>
   );
 }

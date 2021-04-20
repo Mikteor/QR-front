@@ -3,17 +3,18 @@ import styles from './layout.module.css'
 import {NavLink} from 'react-router-dom'
 import LayoutButton from './layoutButton'
 
-const Layout = () => {
+const Layout = ({history}) => {
 
     const exit = () => {
         localStorage.removeItem('token')
-        window.location.reload();
+        // history.replace('/auth')
+        // window.location.reload();
     }
 
     return(
         <div className={styles.headerContainer}>
             <div></div>
-            <div className={styles.exit} onClick={()=>exit()}>Выйти</div>
+            <NavLink to='/auth' onClick={()=>exit()} className={styles.exit}>Выйти</NavLink>
         </div>
     )
 }
