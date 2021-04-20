@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { downloadBundle } from '../../redux/actions/data';
 let backend = process.env.REACT_APP_IP;
 
-const TableRow = ({data, footer}) => {
+const TableRow = ({data, history}) => {
     const dispatch = useDispatch()
 
     const [date,setDate] = useState('')
@@ -35,10 +35,17 @@ const TableRow = ({data, footer}) => {
         setDateDownloaded(day+'.'+month+'.'+year+'/'+hours+':'+zeroMinutes)
         }
     },[])
-    const handleDownload = (id) => {
+    const handleDownload = (e) => {
         // DownloadFile(id)
-        dispatch(downloadBundle(id))
+        e.preventDefault()
+        dispatch(downloadBundle(data._id))
       }
+    const rowClick = () => {
+        // DownloadFile(id)
+       history.replace(`bundle/${data._id}`)
+      }
+
+
     if(!data){
         return(
             <div>loading...</div>
@@ -46,13 +53,13 @@ const TableRow = ({data, footer}) => {
     }
 
     return(
-        <tr className={styles.tableBody}>
+        <tr className={styles.tableBody} onClick={()=>rowClick(data._id)} >
             <td>{date}</td>
             <td>{data.amount}</td>
             <td>{data.value} рублей</td>
             <td>{data.amount_validated}/{data.amount}</td>
             
-            <button onClick={() => handleDownload(data._id)} download>скачать</button>
+            <button onClick={(e) => handleDownload(e)} download>скачать</button>
             
             <td>{data.download_num} раз / {dateDownloaded}</td>
         </tr>

@@ -16,6 +16,7 @@ import Login from './components/login/login'
 import Layout from './components/layout/index'
 import Header from './components/layout/header'
 import Main from './pages/main'
+import Bundle from './pages/bundle'
 import Winners from './pages/winners'
 import History from './pages/history'
 import Ndfl from './pages/ndfl'
@@ -56,6 +57,7 @@ function App() {
             </div>
             <div className={styles.main}>
               <Route exact path="/" component={Main} />
+              <Route exact path="/bundle/:id" component={Bundle} />
               <Route exact path="/winners" component={Winners} />
               <Route exact path="/history" component={History} />
               <Route exact path="/ndfl" component={Ndfl} />
