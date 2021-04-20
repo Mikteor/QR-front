@@ -114,7 +114,7 @@ function DownloadFile(id) {
         url,
         method,
         headers,
-        responseType: "blob", //important
+        responseType: "blob", 
       })
       .then(({ data }) => {
         console.log(data)
