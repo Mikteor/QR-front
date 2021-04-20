@@ -12,3 +12,5 @@ if(!props.auth) return <p> loading..</p>
 
 
 export default Loader
+
+
