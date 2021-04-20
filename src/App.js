@@ -23,6 +23,7 @@ import Statistic from './pages/statistic'
 import Validation from "./pages/validation";
 import { getAllUsers } from "./redux/actions/users";
 import { getAllBundles } from "./redux/actions/data";
+import Loader from "./components/utils/Loader";
 
 function App() {
   const dispatch = useDispatch()
@@ -41,30 +42,30 @@ function App() {
 
 
   return (
-      <Router history={history}>
+    <Router history={history}>
+      <Switch>
+        <Route exact path="/auth" component={Login} />
 
-        <Switch>
-          <Route exact path="/auth" component={Login} />
-        
+        <Loader auth={auth}>
           <div className={styles.appGrid}>
-              <div className={styles.layout}>
-                <Layout histCurrent={history}  />
-              </div>
-              <div  className={styles.header}>
-                <Header history={history}/>
-              </div>
-                <div className={styles.main}>
-                  <Route exact path="/" component={Main} />
-                  <Route exact path="/winners" component={Winners} />
-                  <Route exact path="/history" component={History} />
-                  <Route exact path="/ndfl" component={Ndfl} />
-                  <Route exact path="/statistic" component={Statistic} />
-                  <Route exact path='/validation/:link' component={Validation} />
-                </div>
+            <div className={styles.layout}>
+              <Layout histCurrent={history} />
+            </div>
+            <div className={styles.header}>
+              <Header history={history} />
+            </div>
+            <div className={styles.main}>
+              <Route exact path="/" component={Main} />
+              <Route exact path="/winners" component={Winners} />
+              <Route exact path="/history" component={History} />
+              <Route exact path="/ndfl" component={Ndfl} />
+              <Route exact path="/statistic" component={Statistic} />
+              <Route exact path="/validation/:link" component={Validation} />
+            </div>
           </div>
-        </Switch>
-        
-      </Router>
+        </Loader>
+      </Switch>
+    </Router>
   );
 }
 
