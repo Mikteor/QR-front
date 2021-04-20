@@ -1,4 +1,4 @@
-import {GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS, ONE_BUNDLE} from '../types'
+import {CHANGE_BUNDLE_STATUS, DELETE_BUNDLE, GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS, ONE_BUNDLE} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
 import { createBrowserHistory } from "history";
@@ -55,6 +55,36 @@ console.log(err)
 
 
     };
+
+  export const DeleteBundle = (id) => async (dispatch) => {
+    try {
+      console.log(id, 'id')
+      const res = await innerBackend.delete(`bundles/delete/${id}`);
+
+      dispatch({
+        type: DELETE_BUNDLE,
+        payload: res.data
+      })
+
+    } catch (err) {
+      console.log(err);      
+
+        alert('Партия уже была отправлена на печать')
+    }
+  }
+
+  export const ChangeBundleStatus = (id) => async (dispatch) => {
+      try {
+        console.log(id, 'idididei')
+        const res = await innerBackend.put(`bundles/change/print/${id}`);
+        dispatch({
+          type: CHANGE_BUNDLE_STATUS,
+          payload: res.data
+        })
+      } catch (err) {
+
+      }
+  }
 
 export const getAllQRs = () => async (dispatch) => {
     try {

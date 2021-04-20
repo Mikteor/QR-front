@@ -3,7 +3,7 @@ import styles from './mainComponents.module.css'
 // const ip = process.env.REACT_APP_IP
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { downloadBundle, oneBundle } from '../../redux/actions/data';
+import { ChangeBundleStatus, DeleteBundle, downloadBundle, oneBundle } from '../../redux/actions/data';
 let backend = process.env.REACT_APP_IP;
 
 const TableRow = ({data, history}) => {
@@ -47,24 +47,54 @@ const TableRow = ({data, history}) => {
       }
 
 
+      const handleSubmit = (e) => {
+        if(e.target.value == 'delete'){
+            dispatch(DeleteBundle(data._id))
+        }
+
+
+        if(e.target.value == 'print'){
+            dispatch(ChangeBundleStatus(data._id))
+        }
+
+        if(e.target.value == 'redirect'){
+            history.push(`bundle/${data._id}`);
+
+        }
+      }
+
     if(!data){
         return(
             <div>loading...</div>
         )
     }
 
-    return(
-        <tr className={styles.tableBody} onClick={()=>rowClick(data._id)} >
-            <td>{date}</td>
-            <td>{data.amount}</td>
-            <td>{data.value} рублей</td>
-            <td>{data.amount_validated}/{data.amount}</td>
-            
-            <button onClick={(e) => handleDownload(e)} download>скачать</button>
-            
-            <td>{data.download_num} раз / {dateDownloaded}</td>
-        </tr>
-    )
+    return (
+      <tr className={styles.tableBody} onDoubleClick={() => rowClick(data._id)}>
+        <td>{date}</td>
+        <td>{data.amount}</td>
+        <td>{data.value} рублей</td>
+        <td>
+          {data.amount_validated}/{data.amount}
+        </td>
+
+        <button onClick={(e) => handleDownload(e)} download>
+          скачать
+        </button>
+
+        <td>
+          {data.download_num} раз / {dateDownloaded}
+        </td>
+        <td>
+          <select onChange={handleSubmit}>
+            <option>опции</option>
+            <option value="redirect">подробнее</option>
+            <option value="print">Отправлено на печать</option>
+            <option value="delete">удалить партию</option>
+          </select>
+        </td>
+      </tr>
+    );
 }
 export default TableRow
 
