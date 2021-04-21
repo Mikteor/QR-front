@@ -4,6 +4,9 @@
 .tableBody{
 
 }
+.tableBody:hover{
+    background-color: rgb(218, 218, 218);
+}
 .tableFooter{
     font-weight: bold;
 }
