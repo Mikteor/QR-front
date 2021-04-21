@@ -37,7 +37,7 @@ function App() {
     setAuthToken(localStorage.token)
     if(localStorage.token){
       dispatch(getAllBundles());
-    }
+    } 
   }, [])
 
 
@@ -47,7 +47,7 @@ function App() {
       <Switch>
         <Route exact path="/auth" component={Login} />
 
-        <Loader auth={auth}>
+        <Loader auth={auth} history={history}>
           <div className={styles.appGrid}>
             <div className={styles.layout}>
               <Layout histCurrent={history} />
@@ -62,7 +62,7 @@ function App() {
               <Route exact path="/history" component={History} />
               <Route exact path="/ndfl" component={Ndfl} />
               <Route exact path="/statistic" component={Statistic} />
-              <Route exact path="/validation/:link" component={Validation} />
+              {/* <Route exact path="/validation/:link" component={Validation} /> */}
             </div>
           </div>
         </Loader>

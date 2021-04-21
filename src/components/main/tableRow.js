@@ -88,6 +88,7 @@ const TableRow = ({data, history}) => {
         <td>
           {data.download_num} раз / {dateDownloaded}
         </td>
+        <td>{data.printed ? <p>Отправлен</p> : <p>Не отправлен</p>}</td>
         <td>
           <select onChange={handleSubmit}>
             <option>опции</option>
@@ -105,7 +106,6 @@ export default TableRow
 
 
 function DownloadFile(id) {
-    console.log(id);
     const method = "GET";
     const url = backend + `bundles/download/${id}`;
     const headers = {
@@ -116,7 +116,7 @@ function DownloadFile(id) {
         url,
         method,
         headers,
-        responseType: "blob", //important
+        responseType: "blob", 
       })
       .then(({ data }) => {
         console.log(data)
