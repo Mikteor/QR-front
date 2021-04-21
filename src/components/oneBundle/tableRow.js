@@ -79,7 +79,7 @@ const TableRow = ({data, history}) => {
           {data.amount_validated}/{data.amount}
         </td>
 
-        <button onClick={(e) => handleDownload(e)} download>
+        <button className={styles.tableButton} onClick={(e) => handleDownload(e)} download>
           скачать
         </button>
 
