@@ -64,6 +64,8 @@ const TableRow = ({data, history}) => {
         }
       }
 
+
+
     if(!data){
         return(
             <div>loading...</div>
