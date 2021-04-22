@@ -106,8 +106,8 @@ const MainTable = ({data, history}) => {
                 <TrFooter>
                     <Td>{footer.date}</Td>
                     <Td>{footer.amount}</Td>
-                    <Td>{footer.value}</Td>
-                    <Td>{footer.used}</Td>
+                    <Td>{footer.value} рублей</Td>
+                    <Td>{footer.used}/{footer.amount}</Td>
                 </TrFooter>
             </tfoot>
         </Table>

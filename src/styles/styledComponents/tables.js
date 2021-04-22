@@ -14,6 +14,8 @@ export const TrHeader = styled.tr`
 
 border: none;
 height: 40px;
+font-weight: bold;
+color: grey;
 `
 export const TrBody = styled.tr`
 
@@ -41,6 +43,7 @@ export const TrFooter = styled.tr`
 
 border: none;
 height: 40px;
+font-size: 20px;
 font-weight: bold;
 `
 
