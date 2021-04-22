@@ -12,7 +12,7 @@ const NdflTable = ({data, history}) => {
             <Td>Имя Фамилия</Td>
             <Td>Телефон</Td>
             <Td>Почта</Td>
-            <Td>Погашение</Td>
+            <Td>Оплачено</Td>
             <Td>Общий выигрыш</Td>
             {/* <Td>Активация</Td> */}
             <Td>На руки</Td>
@@ -31,6 +31,9 @@ const NdflTable = ({data, history}) => {
                 {/* <Td>{el.activation}</Td>  */}
                 <Td>{el.sum_ndfl}</Td>
                 <Td>{el.tax_sum}</Td>
+                <Td>
+                  <button>оплатить</button>
+                </Td>
               </TrBody>
             );
           })}
