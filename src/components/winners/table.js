@@ -6,7 +6,7 @@ const WinnersTable = ({data}) => {
 
 
     return(
-        <Table className='tableWide'>
+        <Table className='tableWide' id="win-to-xls">
             <thead>
                 <TrHeader>
                     <Td>Имя Фамилия</Td>
