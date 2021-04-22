@@ -16,6 +16,7 @@ const TableRow = ({data, header, footer, body}) => {
             <td>{data.prize_sum}{body && ' рублей'}</td> 
             {/* <td>{data.activation}</td>  */}
             <td>{data.sum_ndfl}</td> 
+            <td>{data.tax_sum}</td>
         </tr>
     )
 }
