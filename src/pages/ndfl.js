@@ -5,6 +5,7 @@ import {header, data} from '../components/ndfl/data'
 import TableRow from '../components/ndfl/tableRow'
 import FilterRow from '../components/ndfl/filters'
 import { getNdflUsers } from '../redux/actions/users'
+import ReactHTMLTableToExcel from 'react-html-table-to-excel'
 
 const Ndfl = () => {
     const ndflUsers = useSelector(state=>state.users.ndfl)
@@ -18,9 +19,16 @@ const Ndfl = () => {
             <h1>НДФЛ</h1>
             <div className={styles.filterContainer}>
                     <FilterRow />
-                    <button>Импорт в XLS</button>
+                    <ReactHTMLTableToExcel
+                        id="ndfl-table-xls-button"
+                        className="download-table-xls-button"
+                        table="ndfl-to-xls"
+                        filename="ndfl_data"
+                        sheet="tablexls"
+                        buttonText="Скачать XLS"
+                    />
                 </div>
-            <table className='tableWide'>
+            <table className='tableWide' id="ndfl-to-xls">
                 <thead>
                     <TableRow data={header} header/>
                 </thead>

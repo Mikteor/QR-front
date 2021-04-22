@@ -13,7 +13,7 @@ export const GET_ACTIVATED_CODES = 'get_activated_codes'
 export const GET_ALL_QRS = 'get_all_qrs'
 export const DELETE_BUNDLE ='delete_bundle'
 export const CHANGE_BUNDLE_STATUS = 'change_bundle_status_print'
-
+export const START_GENERATE = 'start_generation_process'
 // filters
 export const ADD_FILTER = 'add_filter'
 export const UPDATE_FILTER = 'update_filter'

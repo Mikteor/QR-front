@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getAllBundles, generateQRs} from '../redux/actions/data'
+import {getAllBundles, generateQRs, StartGenerate} from '../redux/actions/data'
 
 import styles from '../styles/main.module.css'
 import {header} from '../components/main/data'
@@ -14,8 +14,8 @@ const Main = ({history}) => {
 const dispatch = useDispatch()
 
 const allData = useSelector(state => state.data.data)
-const msg = useSelector(state => state.data.msg)
-
+// const msg = useSelector(state => state.data.msg)
+const isStarted = useSelector(state => state.data.isStarted)
 const [formData, setFormData] = useState({
     price: 0,
     count: 0,
@@ -44,13 +44,15 @@ useEffect(()=>{
 
 
 const genHandler = () => {
+    dispatch(StartGenerate())
     dispatch(generateQRs(formData))
 }
 
     return(
         <div>
             <h1>Генерация QR кодов</h1>
-            <div className='flex-row'>
+            {isStarted ? <p>Идет генерация QR кодов, процесс займет некоторое время</p> : (
+                <div className='flex-row'>
                 <div className={styles.generationItem}>
                     1. Количество QR кодов
                     <input 
@@ -71,6 +73,9 @@ const genHandler = () => {
                 </div>
                 <button onClick={genHandler}>Сгенерировать</button>
             </div>
+            )}
+            
+           
 
             <h1>История генериций QR</h1>
             <table className='tableWide'>

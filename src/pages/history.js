@@ -27,7 +27,7 @@ const History = () => {
             table="table-to-xls"
             filename="tablexls"
             sheet="tablexls"
-            buttonText="Download as XLS"
+            buttonText="Скачать XLS"
           />
         </div>
         <table className="tableWide" id="table-to-xls">

@@ -6,6 +6,7 @@ import TableRow from '../components/winners/tableRow'
 import FilterRow from '../components/winners/filters'
 import {getActivatedCodes} from '../redux/actions/data'
 import TableHeader from '../components/winners/tableHeader'
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 const Winners = () => {
 const activatedCodes = useSelector(state=>state.data.activated)
@@ -20,9 +21,16 @@ useEffect(()=>{
             <h1>Общая таблица победителей</h1> 
             <div className={styles.filterContainer}>
                     <FilterRow />
-                    <button>Импорт в XLS</button>
+                    <ReactHTMLTableToExcel
+            id="win-table-xls-button"
+            className="download-table-xls-button"
+            table="win-to-xls"
+            filename="win_data"
+            sheet="tablexls"
+            buttonText="Скачать XLS"
+          />
                 </div>
-                {phoneUser &&  <table className='tableWide'>
+                {phoneUser &&  <table className='tableWide' >
                     <thead>
                         <TableHeader data={header}/>
                     </thead>
@@ -30,7 +38,7 @@ useEffect(()=>{
                         <TableRow data={phoneUser} bold body />
                     </tbody>
                 </table>}
-            <table className='tableWide'>
+            <table className='tableWide' id="win-to-xls">
                 <thead>
                     <TableHeader data={header}/>
                 </thead>
