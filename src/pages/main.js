@@ -3,10 +3,8 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getAllBundles, generateQRs, StartGenerate} from '../redux/actions/data'
 
 import styles from '../styles/main.module.css'
-import {header} from '../components/main/data'
-import TableRow from '../components/main/tableRow'
-import TableHeader from '../components/main/tableHeader'
-import TableFooter from '../components/main/tableFooter'
+
+import MainTable from '../components/main/table'
 
 
 
@@ -78,21 +76,7 @@ const genHandler = () => {
            
 
             <h1>История генериций QR</h1>
-            <table className='tableWide'>
-                <thead>
-                    <TableHeader data={header}/>
-                </thead>
-                <tbody>
-                    {allData&&allData.map((el,i)=>{
-                        return(
-                            <TableRow data={el} history={history}/>
-                        )
-                    })}    
-                </tbody>
-                <tfoot>
-                    {allData && <TableFooter data={footer}/>}
-                </tfoot>
-            </table>
+            {allData&& <MainTable data={allData} history={history}/>}
         </div>
     )
 }

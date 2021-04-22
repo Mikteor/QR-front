@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 import styles from '../styles/ndfl.module.css'
-import {header, data} from '../components/ndfl/data'
-import TableRow from '../components/ndfl/tableRow'
 import FilterRow from '../components/ndfl/filters'
 import { getNdflUsers } from '../redux/actions/users'
 import ReactHTMLTableToExcel from 'react-html-table-to-excel'
+import NdflTable from '../components/ndfl/table'
 
 const Ndfl = () => {
     const ndflUsers = useSelector(state=>state.users.ndfl)
@@ -28,20 +27,7 @@ const Ndfl = () => {
                         buttonText="Скачать XLS"
                     />
                 </div>
-            <table className='tableWide' id="ndfl-to-xls">
-                <thead>
-                    <TableRow data={header} header/>
-                </thead>
-                <tbody>
-                    {ndflUsers&&ndflUsers.map((el,i)=>{
-                        return(
-                            <TableRow data={el} body/>
-                        )
-                    })}    
-                </tbody>
-                
-                
-            </table>
+            {ndflUsers&& <NdflTable data={ndflUsers} />}
         </div>
     )
 }

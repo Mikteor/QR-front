@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import styles from './mainComponents.module.css'
-// const ip = process.env.REACT_APP_IP
+import React, {useState, useEffect} from 'react'
+import {Table, TrHeader, TrBody, Td} from '../../styles/styledComponents/tables'
+
 import axios from "axios";
 import { useDispatch } from 'react-redux';
-import { ChangeBundleStatus, DeleteBundle, downloadBundle, oneBundle } from '../../redux/actions/data';
+import { ChangeBundleStatus, DeleteBundle, oneBundle } from '../../redux/actions/data';
 let backend = process.env.REACT_APP_IP;
 
-const TableRow = ({data, history}) => {
+const BundleTable = ({data, history}) => {
     const dispatch = useDispatch()
 
     const [date,setDate] = useState('')
@@ -57,50 +57,48 @@ const TableRow = ({data, history}) => {
         if(e.target.value == 'print'){
             dispatch(ChangeBundleStatus(data._id))
         }
-
-        if(e.target.value == 'redirect'){
-            history.push(`bundle/${data._id}`);
-
-        }
       }
 
 
-
-    if(!data){
-        return(
-            <div>loading...</div>
-        )
-    }
-
-    return (
-      <tr className={styles.tableBody} onDoubleClick={() => rowClick(data._id)}>
-        <td>{date}</td>
-        <td>{data.amount}</td>
-        <td>{data.value} рублей</td>
-        <td>
-          {data.amount_validated}/{data.amount}
-        </td>
-
-        <button className={styles.tableButton} onClick={(e) => handleDownload(e)} download>
-          скачать
-        </button>
-
-        <td>
-          {data.download_num} раз / {dateDownloaded}
-        </td>
-        <td>{data.printed ? <p>Отправлен</p> : <p>Не отправлен</p>}</td>
-        <td>
-          <select onChange={handleSubmit}>
-            <option>опции</option>
-            <option value="redirect">Подробнее</option>
-            <option value="print">Отправлено на печать</option>
-            <option value="delete">Удалить партию</option>
-          </select>
-        </td>
-      </tr>
-    );
+    return(
+        <Table className='tableWide'>
+            <thead>
+                <TrHeader>
+                    <Td>Дата генерации</Td>
+                    <Td>Кол-во QR</Td>
+                    <Td>Сумма одного</Td>
+                    <Td>Использовано</Td>
+                    <Td>Скачать архив</Td>
+                    <Td>Скачан</Td>
+                    <Td>Печать</Td>
+                </TrHeader>
+            </thead>
+            <tbody>
+                <TrBody onDoubleClick={() => rowClick(data._id)}>
+                    <Td>{date}</Td>
+                    <Td>{data.amount}</Td>
+                    <Td>{data.value} рублей</Td>
+                    <Td>{data.amount_validated}/{data.amount}</Td>
+                        <button onClick={(e) => handleDownload(e)} download>
+                        скачать
+                        </button>
+                    <Td>{data.download_num} раз / {dateDownloaded}</Td>
+                    <Td>
+                        <select onChange={handleSubmit}>
+                            <option>опции</option>
+                            {/* <option value="redirect">подробнее</option> */}
+                            <option value="print">Отправлено на печать</option>
+                            <option value="delete">удалить партию</option>
+                        </select>
+                    </Td>
+                </TrBody>
+            </tbody>
+        </Table>
+        
+    )
 }
-export default TableRow
+export default BundleTable
+
 
 
 

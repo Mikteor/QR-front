@@ -1,15 +1,11 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
-
 import styles from '../styles/bundle.module.css'
-import {header, moreHeader} from '../components/oneBundle/data'
-import TableRow from '../components/oneBundle/tableRow'
-import TableHeader from '../components/oneBundle/tableHeader'
-import TableMoreRow from '../components/oneBundle/tableMoreRow'
-import TableMoreHeader from '../components/oneBundle/tableMoreHeader'
 import {oneBundle} from '../redux/actions/data'
 import FilterRow from '../components/oneBundle/filters'
+import BundleTable from '../components/oneBundle/tableBundle';
+import BundleMoreTable from '../components/oneBundle/tableMore';
 const Bundle = ({match, history}) => {
 const dispatch = useDispatch()
 
@@ -23,16 +19,7 @@ console.log('ddada',data)
         
 
             <h1>Подробнее о партии</h1>
-            <table className='tableWide'>
-                <thead>
-                    <TableHeader data={header}/>
-                </thead>
-                <tbody>
-                    {data&&
-                        <TableRow data={data} history={history}/>
-                    }  
-                </tbody>
-            </table>
+            {data && <BundleTable data={data} history={history} />}
 
             <div className={styles.filterContainer}>
                 <FilterRow />
@@ -46,16 +33,7 @@ console.log('ddada',data)
                 />
             </div>
 
-            <table className='tableWide'>
-                <thead>
-                    <TableMoreHeader data={moreHeader}/>
-                </thead>
-                <tbody>
-                    {data&&
-                        <TableMoreRow data={data} history={history}/>
-                    }  
-                </tbody>
-            </table>
+            {data && <BundleMoreTable data={data} history={history} />}
             
         </div>
     )
