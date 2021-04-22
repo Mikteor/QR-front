@@ -13,22 +13,22 @@ const Ndfl = () => {
     useEffect(()=>{
        !ndflUsers && dispatch(getNdflUsers())
     },[])
-    return(
-        <div>
-            <h1>НДФЛ</h1>
-            <div className={styles.filterContainer}>
-                    <FilterRow />
-                    <ReactHTMLTableToExcel
-                        id="ndfl-table-xls-button"
-                        className="download-table-xls-button"
-                        table="ndfl-to-xls"
-                        filename="ndfl_data"
-                        sheet="tablexls"
-                        buttonText="Скачать XLS"
-                    />
-                </div>
-            {ndflUsers&& <NdflTable data={ndflUsers} />}
+    return (
+      <div>
+        <h1>НДФЛ</h1>
+        <div className={styles.filterContainer}>
+          <FilterRow />
+          <ReactHTMLTableToExcel
+            id="ndfl-table-xls-button"
+            className="download-table-xls-button"
+            table="ndfl-to-xls"
+            filename="ndfl_data"
+            sheet="tablexls"
+            buttonText="Скачать XLS"
+          />
         </div>
-    )
+        {ndflUsers && <NdflTable data={ndflUsers} />}
+      </div>
+    );
 }
 export default Ndfl

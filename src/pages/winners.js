@@ -36,7 +36,7 @@ useEffect(()=>{
                         <TableRow data={phoneUser} bold body />
                     </tbody>
                 </table>} */}
-                {activatedCodes&&<WinnersTable data={activatedCodes} />}
+                {activatedCodes && <WinnersTable data={activatedCodes} />}
         </div>
     )
 }
