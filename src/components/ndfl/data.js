@@ -5,7 +5,9 @@ export const header = {
     rebound:'Погашение',
     prize_sum: 'Общий выигрыш',
     activation: 'Активация',
-    sum_ndfl: 'НДФЛ'
+    sum_ndfl: 'На руки',
+    tax_sum: 'НДФЛ'
+    
 }
 
 export const data = [
