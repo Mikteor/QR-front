@@ -92,9 +92,9 @@ const TableRow = ({data, history}) => {
         <td>
           <select onChange={handleSubmit}>
             <option>опции</option>
-            <option value="redirect">подробнее</option>
+            <option value="redirect">Подробнее</option>
             <option value="print">Отправлено на печать</option>
-            <option value="delete">удалить партию</option>
+            <option value="delete">Удалить партию</option>
           </select>
         </td>
       </tr>
