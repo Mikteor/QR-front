@@ -13,7 +13,7 @@ const WinnersTable = ({data}) => {
                     <Td>Телефон</Td>
                     <Td>Почта</Td>
                     <Td>Погашение</Td>
-                    <Td>Общий выигрыш</Td>
+                    <Td>Выигрыш</Td>
                 </TrHeader>
             </thead>
             <tbody>
@@ -23,7 +23,7 @@ const WinnersTable = ({data}) => {
                            <Td>{el.player ? el.player.fullname:'неизвестно'}</Td>
                            <Td>{el.player ?  el.player.phone:  'неизвестно'}</Td>
                            <Td>{el.player ?  el.player.email:  'неизвестно'}</Td>
-                           <Td></Td>
+                           <Td>{el.payed? 'Да' : 'Нет'}</Td>
                            <Td>{el.value} рублей</Td>
                         </TrBody>
                     )

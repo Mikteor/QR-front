@@ -19,22 +19,6 @@ const [formData, setFormData] = useState({
     count: 0,
 })
 
-const footer = allData && {
-    date: 'Итого',
-    amount: allData.reduce((sum,cur)=>{
-        // console.log(cur.amount)
-        // console.log(sum+cur.amount)
-        return sum+cur.amount
-    },0),
-    value: allData.reduce((sum,cur)=>{
-        return sum+(cur.value*cur.amount)
-    },0),
-    used: allData.reduce((sum,cur)=>{
-        return sum+cur.amount_validated
-    },0),
-}
-
-
 useEffect(()=>{
     !allData && localStorage.token && dispatch(getAllBundles())
 },[])

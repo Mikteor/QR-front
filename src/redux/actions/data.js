@@ -122,18 +122,19 @@ console.log(err)
   }; 
   
   
-  export const getActivatedCodes = () => async (dispatch) => {
+  export const getActivatedCodes = (query) => async (dispatch) => {
     try {
-    //   const res = await innerBackend.get("/codes/generatecodes",formData);
-        const res = await innerBackend.get(`codes/find/validated`)
       
-      console.log(res.data)
+    
+    //   const res = await innerBackend.get("/codes/generatecodes",formData);
+        const res = await innerBackend.get(`codes/find/claimed${query?query:''}`)
+      console.log('resss ',res)
       dispatch({
         type: GET_ACTIVATED_CODES,
         payload: res.data,
       });
     } catch (err) {
-        console.log(err)      
+        console.log(err.response.data)      
 
     }
   };
