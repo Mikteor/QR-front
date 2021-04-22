@@ -7,6 +7,7 @@ import TableRow from '../components/history/tableRow'
 import FilterRow from '../components/history/filters'
 import { getAllQRs } from '../redux/actions/data'
 import TableHeader from '../components/history/tableHeader'
+import ReactHTMLTableToExcel from "react-html-table-to-excel";
 
 const History = () => {
     const allQRs = useSelector(state=>state.data.allQRs)
@@ -15,28 +16,32 @@ const History = () => {
     useEffect(()=>{
        !allQRs && dispatch(getAllQRs())
     },[])
-    return(
-        <div>
-            <h1>История</h1>
-            <div className={styles.filterContainer}>
-                    <FilterRow />
-                    <button>Импорт в XLS</button>
-                </div>
-            <table className='tableWide'>
-                <thead>
-                    <TableHeader data={header} />
-                </thead>
-                <tbody>
-                    {allQRs&&allQRs.map((el,i)=>{
-                        return(
-                            <TableRow data={el} body/>
-                        )
-                    })}    
-                </tbody>
-                
-                
-            </table>
+    return (
+      <div>
+        <h1>История</h1>
+        <div className={styles.filterContainer}>
+          <FilterRow />
+          <ReactHTMLTableToExcel
+            id="test-table-xls-button"
+            className="download-table-xls-button"
+            table="table-to-xls"
+            filename="tablexls"
+            sheet="tablexls"
+            buttonText="Download as XLS"
+          />
         </div>
-    )
+        <table className="tableWide" id="table-to-xls">
+          <thead>
+            <TableHeader data={header} />
+          </thead>
+          <tbody>
+            {allQRs &&
+              allQRs.map((el, i) => {
+                return <TableRow data={el} body />;
+              })}
+          </tbody>
+        </table>
+      </div>
+    );
 }
 export default History

@@ -1,10 +1,11 @@
 
-import {GET_ALL_DATA,GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_QRS } from '../types'
+import {GET_ALL_DATA,GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_QRS, ONE_BUNDLE, CHANGE_BUNDLE_STATUS, DELETE_BUNDLE } from '../types'
 
 
 
 const initialState = {
     data: null,
+    oneBundle: null,
     msg: null,
     activated: null,
     allQRs: null,
@@ -17,11 +18,16 @@ export default function(state = initialState, action) {
 
     switch(type){
         case GET_ALL_DATA:
-console.log('get data',payload)      
-
+        case CHANGE_BUNDLE_STATUS:
+        case DELETE_BUNDLE:
             return {
                 ...state,
                 data: payload
+            }
+        case ONE_BUNDLE:
+            return {
+                ...state,
+                oneBundle: payload
             }
         case GET_ACTIVATED_CODES:
             return {

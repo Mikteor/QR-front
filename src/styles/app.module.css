@@ -14,6 +14,8 @@
 .main{
     grid-area: main;
     padding: 20px;
+    padding-left: 40px;
+    padding-right: 30px;
 }
 .header{
     grid-area: header;

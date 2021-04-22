@@ -10,7 +10,7 @@ import TableFooter from '../components/main/tableFooter'
 
 
 
-const Main = () => {
+const Main = ({history}) => {
 const dispatch = useDispatch()
 
 const allData = useSelector(state => state.data.data)
@@ -38,7 +38,7 @@ const footer = allData && {
 
 
 useEffect(()=>{
-    !allData && dispatch(getAllBundles())
+    !allData && localStorage.token && dispatch(getAllBundles())
 },[])
 
 
@@ -80,7 +80,7 @@ const genHandler = () => {
                 <tbody>
                     {allData&&allData.map((el,i)=>{
                         return(
-                            <TableRow data={el}/>
+                            <TableRow data={el} history={history}/>
                         )
                     })}    
                 </tbody>

@@ -1,0 +1,12 @@
+.tableHeader{
+    color: grey;
+}
+.tableBody{
+    background-color: white;
+}
+.tableBody:hover{
+    background-color: rgb(194, 194, 194);
+}
+.tableFooter{
+    font-weight: bold;
+}

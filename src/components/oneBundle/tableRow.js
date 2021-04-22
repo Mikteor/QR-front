@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from './mainComponents.module.css'
+import styles from './bundleComponents.module.css'
 // const ip = process.env.REACT_APP_IP
 import axios from "axios";
 import { useDispatch } from 'react-redux';
@@ -58,13 +58,11 @@ const TableRow = ({data, history}) => {
             dispatch(ChangeBundleStatus(data._id))
         }
 
-        if(e.target.value == 'redirect'){
-            history.push(`bundle/${data._id}`);
+        // if(e.target.value == 'redirect'){
+        //     history.push(`bundle/${data._id}`);
 
-        }
+        // }
       }
-
-
 
     if(!data){
         return(
@@ -88,11 +86,10 @@ const TableRow = ({data, history}) => {
         <td>
           {data.download_num} раз / {dateDownloaded}
         </td>
-        <td>{data.printed ? <p>Отправлен</p> : <p>Не отправлен</p>}</td>
         <td>
           <select onChange={handleSubmit}>
             <option>опции</option>
-            <option value="redirect">подробнее</option>
+            {/* <option value="redirect">подробнее</option> */}
             <option value="print">Отправлено на печать</option>
             <option value="delete">удалить партию</option>
           </select>
@@ -106,6 +103,7 @@ export default TableRow
 
 
 function DownloadFile(id) {
+    console.log(id);
     const method = "GET";
     const url = backend + `bundles/download/${id}`;
     const headers = {
@@ -116,7 +114,7 @@ function DownloadFile(id) {
         url,
         method,
         headers,
-        responseType: "blob", 
+        responseType: "blob", //important
       })
       .then(({ data }) => {
         console.log(data)
