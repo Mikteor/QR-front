@@ -2,7 +2,7 @@ export const header = {
     fullname: 'Имя Фамилия',
     phone: 'Телефон',
     email: 'Почта',
-    rebound:'Погашение',
+    rebound:'Оплачено',
     prize_sum: 'Общий выигрыш',
     activation: 'Активация',
     sum_ndfl: 'На руки',

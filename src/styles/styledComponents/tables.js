@@ -20,10 +20,10 @@ color: grey;
 export const TrBody = styled.tr`
 
 border: none;
-height: 40px;
+height: 30px;
 
 &:hover{
-    background-color: #B7B7B7;
+    background-color: #F0F0F0;
 }
 & button{
     background-color: transparent;

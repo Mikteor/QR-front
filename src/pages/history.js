@@ -29,7 +29,7 @@ const History = () => {
             buttonText="Скачать XLS"
           />
         </div>
-        {allQRs && <HistoryTable data={allQRs}  />}
+        {allQRs ? <HistoryTable data={allQRs}  /> : <p>Загружаем данные...</p>}
       </div>
     );
 }
