@@ -1,4 +1,4 @@
-import {CHANGE_BUNDLE_STATUS, DELETE_BUNDLE, GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS, ONE_BUNDLE, START_GENERATE} from '../types'
+import {CHANGE_BUNDLE_STATUS, CHANGE_NDFL_STATUS, DELETE_BUNDLE, GENERATE_QR, GET_ACTIVATED_CODES, GET_ALL_DATA, GET_ALL_QRS, ONE_BUNDLE, START_GENERATE} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
 import { createBrowserHistory } from "history";
@@ -84,6 +84,21 @@ console.log(err, 'error')
       } catch (err) {
 
       }
+  }
+
+  export const ChnageNDFLpayment = (id) => async dispatch => {
+    try {
+      const res = await innerBackend.put(`codes/pay/${id}`);
+      console.log(res.data)
+      dispatch({
+        type: CHANGE_NDFL_STATUS,
+        payload: res.data
+      })
+
+    } catch (err) {
+              console.log(err.response);
+
+    }
   }
 
 export const getAllQRs = (query) => async (dispatch) => {

@@ -1,9 +1,17 @@
 import {Table, TrHeader, TrBody, Td} from '../../styles/styledComponents/tables'
 import React from 'react'
+import { useDispatch } from 'react-redux'
+import { ChnageNDFLpayment } from '../../redux/actions/data';
 
 
 const NdflTable = ({data, history}) => {
-  
+  const dispatch = useDispatch();
+
+  const handlePay = (id) => {
+    //server
+    console.log(id)
+    dispatch(ChnageNDFLpayment(id));
+  }
 
     return (
       <Table className="tableWide" id="ndfl-to-xls">
@@ -26,13 +34,13 @@ const NdflTable = ({data, history}) => {
                 <Td>{el.fullname}</Td>
                 <Td>+{el.phone}</Td>
                 <Td>{el.email}</Td>
-                <Td>{el.rebound ? "Да" : "Нет"}</Td>
+                <Td>{el.prizes.every(prize => prize.payed) ? "Да" : "Нет"}</Td>
                 <Td>{el.prize_sum} рублей</Td>
                 {/* <Td>{el.activation}</Td>  */}
                 <Td>{el.sum_ndfl}</Td>
                 <Td>{el.tax_sum}</Td>
                 <Td>
-                  <button>оплатить</button>
+                  <button onClick={() => handlePay(el._id)}>оплатить</button>
                 </Td>
               </TrBody>
             );
