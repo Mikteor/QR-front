@@ -39,9 +39,11 @@ export const getAllBundles = () => async (dispatch) => {
     }
   };
 
-export const oneBundle = (id) => async (dispatch) => {
+export const oneBundle = (id,query) => async (dispatch) => {
    try {
-    const res = await innerBackend.get(`bundles/find/id/${id}`)
+     const queryConnection = query? query.replace('?','&') : undefined
+     console.log(`bundles/find/id/?id=${id}${query?queryConnection:''}`)
+    const res = await innerBackend.get(`bundles/find/id/?id=${id}${query?queryConnection:''}`)
 
       console.log(res.data)
      

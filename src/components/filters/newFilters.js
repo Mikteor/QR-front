@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import styles from './winnersComponents.module.css'
+import styles from './filters.module.css'
 import {useDispatch} from 'react-redux'
 import { Input, Select} from '../../styles/styledComponents/filters'
 
@@ -116,13 +116,13 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                     </form>
                 </div>}
                 {prize_sum && 
-                <div className={styles.filterButton} >
+                <div className={styles.filterButton}  >
                     <img className={styles.filterIcon} src='/search.png'/>
                     <form onSubmit={e=>onSubmit(e)}>
                     <Input 
                         name='gt'
                         type='search'
-                        placeholder='Суммарный выигрыш'
+                        placeholder='Суммарный выигрыш более'
                         onChange={e=>inputFilterHandler(e)}
                         />  
                     </form>

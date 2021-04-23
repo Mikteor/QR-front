@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
 
 import styles from '../styles/history.module.css'
+import filterStyles from '../components/filters/filters.module.css'
 
 import Filters from '../components/filters/newFilters'
 import { getAllQRs } from '../redux/actions/data'
@@ -18,11 +19,11 @@ const History = () => {
     return (
       <div>
         <h1>История</h1>
-        <div className={styles.filterContainer}>
+        <div className={filterStyles.filterRow}>
           <Filters routeToFilter={(query)=>getAllQRs(query)} fullname phone validated payed value/>
           <ReactHTMLTableToExcel
             id="test-table-xls-button"
-            className="download-table-xls-button"
+            className={filterStyles.xlsButton}
             table="table-to-xls"
             filename="tablexls"
             sheet="tablexls"
