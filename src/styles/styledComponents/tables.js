@@ -52,6 +52,6 @@ export const Td = styled.td`
 
 height: 28px;
 border: none;
-font-size:16px;
+font-size:14px;
 
 `
