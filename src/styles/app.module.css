@@ -1,7 +1,7 @@
 .appGrid{
     display: grid;
     grid-template-areas: 
-    'header header'
+    'layout header'
     'layout main'
     ;
     grid-template-columns: max-content 1fr;

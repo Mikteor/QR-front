@@ -33,9 +33,10 @@ height: 30px;
     align-self: center;
     border: none;
     }
-    & tableButton:hover{
+    & button:hover{
     background-color: transparent;
     color: black;
+    font-weight: bold;
     border: none;
     }
 `

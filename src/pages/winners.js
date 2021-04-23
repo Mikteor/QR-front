@@ -4,7 +4,7 @@ import styles from '../styles/winners.module.css'
 import {getActivatedCodes} from '../redux/actions/data'
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import WinnersTable from '../components/winners/table'
-import NewFilter from '../components/winners/newFilters'
+import NewFilter from '../components/filters/newFilters'
 
 const Winners = () => {
 const activatedCodes = useSelector(state=>state.data.activated)
@@ -18,7 +18,7 @@ useEffect(()=>{
         <div>
             <h1>Общая таблица победителей</h1> 
             <div className={styles.filterContainer}>
-                    <NewFilter />
+                    <NewFilter routeToFilter={(query)=>getActivatedCodes(query)} fullname phone validated payed value />
                     <ReactHTMLTableToExcel
                         id="win-table-xls-button"
                         className="download-table-xls-button"

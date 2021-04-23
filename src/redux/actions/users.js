@@ -40,10 +40,10 @@ console.log(err)
     }
   };
 
-  export const getNdflUsers = () => async (dispatch) => {
+  export const getNdflUsers = (query) => async (dispatch) => {
     try {
-    //   const res = await innerBackend.get("/codes/generatecodes",formData);
-        const res = await innerBackend.get(`users/find/all/ndfl`)
+
+        const res = await innerBackend.get(`users/find/all/ndfl${query?query:''}`)
       
       console.log(res.data)
       dispatch({

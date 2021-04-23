@@ -1,0 +1,14 @@
+.filterButton{
+    display: flex;
+    align-items: center;
+    color: grey;
+}
+.filterIcon{
+    height: 20px;
+    margin-right: 5px;
+}
+.filterContainer{
+    display: flex;
+    justify-content: space-between;
+
+}

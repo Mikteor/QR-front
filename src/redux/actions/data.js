@@ -125,7 +125,7 @@ console.log(err)
   export const getActivatedCodes = (query) => async (dispatch) => {
     try {
       
-    
+    console.log('query',query)
     //   const res = await innerBackend.get("/codes/generatecodes",formData);
         const res = await innerBackend.get(`codes/find/claimed${query?query:''}`)
       console.log('resss ',res)
