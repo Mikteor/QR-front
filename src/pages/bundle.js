@@ -3,7 +3,6 @@ import {useDispatch, useSelector} from 'react-redux'
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import styles from '../styles/bundle.module.css'
 import {oneBundle} from '../redux/actions/data'
-import FilterRow from '../components/oneBundle/filters'
 import BundleTable from '../components/oneBundle/tableBundle';
 import BundleMoreTable from '../components/oneBundle/tableMore';
 const Bundle = ({match, history}) => {
@@ -19,7 +18,6 @@ const data = useSelector(state => state.data.oneBundle)
             {data && <BundleTable data={data} history={history} />}
 
             <div className={styles.filterContainer}>
-                <FilterRow />
                 <ReactHTMLTableToExcel
                     id="test-table-xls-button"
                     className="download-table-xls-button"
