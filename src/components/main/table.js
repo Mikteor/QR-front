@@ -1,4 +1,4 @@
-import {Table, TrHeader, TrBody, Td, TrFooter} from '../../styles/styledComponents/tables'
+import {Table, TrHeader, TrBody, Td, TrFooter, Select} from '../../styles/styledComponents/tables'
 import React from 'react'
 import axios from "axios";
 import { useDispatch } from 'react-redux';
@@ -85,18 +85,20 @@ const MainTable = ({data, history}) => {
                             <Td>{el.amount}</Td>
                             <Td>{el.value} рублей</Td>
                             <Td>{el.amount_validated}/{el.amount}</Td>
-                                <button  onClick={(e) => handleDownload(e, el._id)} download>
-                                скачать
-                                </button>
-                            <Td>{el.download_num} раз / {dateDownloaded}</Td>
-                            <Td>{el.printed ? <p>Отправлен</p> : <p>Не отправлен</p>}</Td>
                             <Td>
-                                <select onChange={(e)=>handleSubmit(e, el._id)}>
+                                <button  onClick={(e) => handleDownload(e, el._id)} download>
+                                    скачать
+                                </button>
+                            </Td>
+                            <Td>{el.download_num} раз / {dateDownloaded}</Td>
+                            <Td>{el.printed ? 'Отправлен' : 'Не отправлен'}</Td>
+                            <Td>
+                                <Select onChange={(e)=>handleSubmit(e, el._id)}>
                                     <option>опции</option>
                                     <option value="redirect">Подробнее</option>
                                     <option value="print">Отправлено на печать</option>
                                     <option value="delete">Удалить партию</option>
-                                </select>
+                                </Select>
                             </Td>
                         </TrBody>
                     )
@@ -108,6 +110,10 @@ const MainTable = ({data, history}) => {
                     <Td>{footer.amount}</Td>
                     <Td>{footer.value} рублей</Td>
                     <Td>{footer.used}/{footer.amount}</Td>
+                    <Td></Td>
+                    <Td></Td>
+                    <Td></Td>
+                    <Td></Td>
                 </TrFooter>
             </tfoot>
         </Table>

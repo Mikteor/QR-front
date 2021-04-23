@@ -1,8 +1,7 @@
 .filterContainer{
     display: grid;
     grid-template-columns: 1fr max-content;
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 20px;
     border-top: 1px solid gray;
     border-bottom: 1px solid grey;
 }

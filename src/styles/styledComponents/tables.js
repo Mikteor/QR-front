@@ -20,7 +20,7 @@ color: grey;
 export const TrBody = styled.tr`
 
 border: none;
-height: 30px;
+// height: 80px;
 
 &:hover{
     background-color: #F0F0F0;
@@ -29,7 +29,8 @@ height: 30px;
     background-color: transparent;
     color: #5D96D8;
     padding: 0;
-    margin-top: 18px;
+    // margin-top: 10px;
+    // margin-bottom:auto;
     align-self: center;
     border: none;
     }
@@ -46,12 +47,20 @@ border: none;
 height: 40px;
 font-size: 20px;
 font-weight: bold;
+border-top: 1px solid black;
+
 `
 
 export const Td = styled.td`
 
-height: 28px;
 border: none;
 font-size:14px;
+padding: 10px 0;
+
+`
+
+export const Select = styled.select`
+
+border: none;
 
 `

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getAllBundles, generateQRs, StartGenerate} from '../redux/actions/data'
-
+import {MainInput} from '../styles/styledComponents/main'
 import styles from '../styles/main.module.css'
 
 import MainTable from '../components/main/table'
@@ -37,7 +37,7 @@ const genHandler = () => {
                 <div className='flex-row'>
                 <div className={styles.generationItem}>
                     1. Количество QR кодов
-                    <input 
+                    <MainInput 
                         type='number'
                         name='count'
                         placeholder='0'
@@ -46,20 +46,20 @@ const genHandler = () => {
                 </div>
                 <div className={styles.generationItem}>
                     2. Сумма одного QR кода
-                    <input 
+                    <MainInput 
                         type='number'
                         name='price'
                         placeholder='000'
                         onChange={(e)=>setFormData({...formData,price: Number(e.target.value) })}
                         />
                 </div>
-                <button onClick={genHandler}>Сгенерировать</button>
+                <button onClick={genHandler} className={styles.genButton}>Сгенерировать</button>
             </div>
             )}
             
            
 
-            <h1>История генериций QR</h1>
+            <h1 className={styles.historyTitle}>История генериций QR</h1>
             {allData&& <MainTable data={allData} history={history}/>}
         </div>
     )

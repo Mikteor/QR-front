@@ -14,7 +14,7 @@ const BundleMoreTable = ({data}) => {
                     <Td>Телефон</Td>
                     <Td>Статус активации</Td>
                     <Td>Погашение</Td>
-                    <Td>Общий выигрыш</Td>
+                    <Td>Выигрыш</Td>
                 </TrHeader>
             </thead>
             <tbody>

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Table, TrHeader, TrBody, Td} from '../../styles/styledComponents/tables'
+import {Table, TrHeader, TrBody, Td, Select} from '../../styles/styledComponents/tables'
 
 import axios from "axios";
 import { useDispatch } from 'react-redux';
@@ -11,6 +11,7 @@ const BundleTable = ({data, history}) => {
 
     const [date,setDate] = useState('')
     const [dateDownloaded,setDateDownloaded] = useState('')
+    const [printDate,setPrintDate] = useState('')
     useEffect(()=>{
         if(data){
         const newDate = new Date(data.date)
@@ -33,6 +34,18 @@ const BundleTable = ({data, history}) => {
         const minutes = newDate.getMinutes()
         const zeroMinutes = minutes>9? minutes : '0'+minutes
         setDateDownloaded(day+'.'+month+'.'+year+'/'+hours+':'+zeroMinutes)
+        }
+    },[])
+    useEffect(()=>{
+        if(data && data.print_date){
+        const newDate = new Date(data.print_date)
+        const day = newDate.getDay()
+        const month = newDate.getMonth()
+        const year = newDate.getFullYear()
+        const hours = newDate.getHours()
+        const minutes = newDate.getMinutes()
+        const zeroMinutes = minutes>9? minutes : '0'+minutes
+        setPrintDate(day+'.'+month+'.'+year+'/'+hours+':'+zeroMinutes)
         }
     },[])
     const handleDownload = (e) => {
@@ -70,7 +83,8 @@ const BundleTable = ({data, history}) => {
                     <Td>Использовано</Td>
                     <Td>Скачать архив</Td>
                     <Td>Скачан</Td>
-                    <Td>Печать</Td>
+                    <Td>Отправлен на печать</Td>
+                    <Td>Опции</Td>
                 </TrHeader>
             </thead>
             <tbody>
@@ -79,17 +93,20 @@ const BundleTable = ({data, history}) => {
                     <Td>{data.amount}</Td>
                     <Td>{data.value} рублей</Td>
                     <Td>{data.amount_validated}/{data.amount}</Td>
-                        <button onClick={(e) => handleDownload(e)} download>
-                        скачать
-                        </button>
-                    <Td>{data.download_num} раз / {dateDownloaded}</Td>
                     <Td>
-                        <select onChange={handleSubmit}>
-                            <option>опции</option>
+                        <button onClick={(e) => handleDownload(e)} download>
+                            скачать
+                        </button>
+                    </Td>
+                    <Td>{data.download_num} раз / {dateDownloaded}</Td>
+                    <Td>{printDate}</Td>
+                    <Td>
+                        <Select onChange={handleSubmit}>
+                            <option>---</option>
                             {/* <option value="redirect">подробнее</option> */}
                             <option value="print">Отправлено на печать</option>
                             <option value="delete">удалить партию</option>
-                        </select>
+                        </Select>
                     </Td>
                 </TrBody>
             </tbody>
