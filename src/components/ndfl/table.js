@@ -9,8 +9,9 @@ const NdflTable = ({data, history}) => {
 
   const handlePay = (id) => {
     //server
-    console.log(id)
+    // console.log(id)
     dispatch(ChnageNDFLpayment(id));
+
   }
 
     return (
