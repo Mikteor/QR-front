@@ -40,7 +40,7 @@ const NdflTable = ({data, history}) => {
                 <Td>{el.sum_ndfl}</Td>
                 <Td>{el.tax_sum}</Td>
                 <Td>
-                  <button onClick={() => handlePay(el._id)}>оплатить</button>
+                  <button onClick={() => handlePay(el._id)}>Оплатить</button>
                 </Td>
               </TrBody>
             );
