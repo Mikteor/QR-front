@@ -36,7 +36,7 @@ height: 30px;
     & button:hover{
     background-color: transparent;
     color: black;
-    font-weight: bold;
+    text-decoration: underline;
     border: none;
     }
 `

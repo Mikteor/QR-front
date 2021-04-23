@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import styles from './winnersComponents.module.css'
-import {useDispatch, useSelector} from 'react-redux'
-import {getActivatedCodes} from '../../redux/actions/data'
-import {getUserByPhone} from '../../redux/actions/users'
+import {useDispatch} from 'react-redux'
 import { Input, Select} from '../../styles/styledComponents/filters'
 
 
 const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, value, prize_sum}) => {
-    // const filterARR = useSelector(state => state.filter.filters)
+
     const dispatch = useDispatch()
+
     const[filters, setFilters] = useState({
         fullname: '',
         phone: '',
@@ -20,8 +19,12 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
     })
 
     useEffect(()=>{
-        console.log(filters)
+        onSubmit()
+    },[filters.validated, filters.payed, filters.printed])
 
+
+    const onSubmit = (e) => {
+        e && e.preventDefault()
         const newArr =   [
                 filters.fullname.length>0&&'fullname='+filters.fullname, 
                 filters.phone.length>0&&'phone='+filters.phone,
@@ -31,20 +34,13 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                 filters.value.length>0&&'value='+filters.value,
                 filters.gt.length>0&&'gt='+filters.gt,
             ] 
-            console.log(newArr)
         const queryArr = newArr.length>0 ? newArr.filter(el=>el!==false) : undefined
         const query = queryArr ? ( queryArr.length>1? '?'+queryArr.join('&') : queryArr.length==1? '?'+queryArr[0] : queryArr.length==0 && undefined)  : undefined
 
-
-        console.log(`smth/smth/smth${query?query:''}`)
-
-
         dispatch(routeToFilter(query))
-    },[filters])
-
+    }
 
     const inputFilterHandler = (e) => {
-        // e.preventDefault()
         setFilters({...filters, [e.target.name]: e.target.value})
         }
 
@@ -53,7 +49,7 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                 {fullname && 
                 <div className={styles.filterButton} >
                     <img className={styles.filterIcon} src='/search.png'/>
-                    <form onSubmit={inputFilterHandler}>
+                    <form onSubmit={e=>onSubmit(e)}>
                     <Input 
                         name='fullname'
                         type='search'
@@ -65,7 +61,7 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                 {phone && 
                 <div className={styles.filterButton} >
                     <img className={styles.filterIcon} src='/search.png'/>
-                    <form onSubmit={inputFilterHandler}>
+                    <form onSubmit={e=>onSubmit(e)}>
                     <Input 
                         name='phone'
                         type='search'
@@ -77,7 +73,7 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                 {validated && 
                 <div className={styles.filterButton} >
                     <img className={styles.filterIcon} src='/search.png'/>
-                    <form onSubmit={inputFilterHandler}>
+                    <form onSubmit={e=>onSubmit(e)}>
                     <Select name='validated' onChange={e=>inputFilterHandler(e)}>
                         <option value="">Статус активации</option>
                         <option value="true">Активирован</option>
@@ -88,7 +84,7 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                 {payed && 
                 <div className={styles.filterButton} >
                     <img className={styles.filterIcon} src='/search.png'/>
-                    <form onSubmit={inputFilterHandler}>
+                    <form onSubmit={e=>onSubmit(e)}>
                     <Select name='payed' onChange={e=>inputFilterHandler(e)}>
                         <option value="">Погашение</option>
                         <option value="true">Погашен</option>
@@ -99,7 +95,7 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                 {printed && 
                 <div className={styles.filterButton} >
                     <img className={styles.filterIcon} src='/search.png'/>
-                    <form onSubmit={inputFilterHandler}>
+                    <form onSubmit={e=>onSubmit(e)}>
                     <Select name='printed' onChange={e=>inputFilterHandler(e)}>
                         <option value="">Печать</option>
                         <option value="true">В печати</option>
@@ -110,7 +106,7 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                 {value && 
                 <div className={styles.filterButton} >
                     <img className={styles.filterIcon} src='/search.png'/>
-                    <form onSubmit={inputFilterHandler}>
+                    <form onSubmit={e=>onSubmit(e)}>
                     <Input 
                         name='value'
                         type='search'
@@ -122,7 +118,7 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                 {prize_sum && 
                 <div className={styles.filterButton} >
                     <img className={styles.filterIcon} src='/search.png'/>
-                    <form onSubmit={inputFilterHandler}>
+                    <form onSubmit={e=>onSubmit(e)}>
                     <Input 
                         name='gt'
                         type='search'

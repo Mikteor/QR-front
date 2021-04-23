@@ -86,9 +86,10 @@ console.log(err, 'error')
       }
   }
 
-export const getAllQRs = () => async (dispatch) => {
+export const getAllQRs = (query) => async (dispatch) => {
     try {
-    const res = await innerBackend.get(`codes/find/all`)
+      console.log(`codes/find/all${query?query:''}`)
+    const res = await innerBackend.get(`codes/find/all${query?query:''}`)
 
       console.log(res.data)
       dispatch({

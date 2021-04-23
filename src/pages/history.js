@@ -3,7 +3,7 @@ import {useDispatch,useSelector} from 'react-redux'
 
 import styles from '../styles/history.module.css'
 
-import FilterRow from '../components/history/filters'
+import Filters from '../components/filters/newFilters'
 import { getAllQRs } from '../redux/actions/data'
 import ReactHTMLTableToExcel from "react-html-table-to-excel";
 import HistoryTable from '../components/history/table'
@@ -19,7 +19,7 @@ const History = () => {
       <div>
         <h1>История</h1>
         <div className={styles.filterContainer}>
-          <FilterRow />
+          <Filters routeToFilter={(query)=>getAllQRs(query)} fullname phone validated payed value/>
           <ReactHTMLTableToExcel
             id="test-table-xls-button"
             className="download-table-xls-button"

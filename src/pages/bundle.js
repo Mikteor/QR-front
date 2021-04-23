@@ -11,13 +11,10 @@ const dispatch = useDispatch()
 
 const data = useSelector(state => state.data.oneBundle)
 !data && dispatch(oneBundle(match.params.id))
-console.log('ddada',data)
 
 
     return(
         <div>
-        
-
             <h1>Подробнее о партии</h1>
             {data && <BundleTable data={data} history={history} />}
 
@@ -34,7 +31,6 @@ console.log('ddada',data)
             </div>
 
             {data && <BundleMoreTable data={data} history={history} />}
-            
         </div>
     )
 }
