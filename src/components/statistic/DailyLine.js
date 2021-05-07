@@ -20,36 +20,41 @@ const options = {
   let labels = [];
   let PrizesActivated = [];
   let PrizesClaimed = [];
-  let data = [];
+  let data = null;
 
 const DailyGraph = ({stat}) => {
     const [loaded, setLoaded] = useState(false)
     useEffect(() => {
-        stat.map((day) => {
-        labels.push(day.day + " " + day.month);
-        PrizesActivated.push(day.PrizesActivated);
-        PrizesClaimed.push(day.PrizesClaimed);
-    })
+        if(!data) {
 
-data = {
-  labels: labels,
-  datasets: [
-    {
-      label: "Активировано QR",
-      data: PrizesActivated,
-      fill: false,
-      backgroundColor: "rgb(255, 99, 132)",
-      borderColor: "rgba(255, 99, 132, 0.2)",
-    },
-    {
-      label: "Оплачено призов",
-      data: PrizesClaimed,
-      fill: false,
-      backgroundColor: "rgb(65, 150, 132)",
-      borderColor: "rgba(65, 150, 132, 0.2)",
-    },
-  ],
-};
+            stat.map((day) => {
+            labels.push(day.day + " " + day.month);
+            PrizesActivated.push(day.PrizesActivated);
+            PrizesClaimed.push(day.PrizesClaimed);
+            });
+
+            data = {
+            labels: labels,
+            datasets: [
+                {
+                label: "Активировано QR",
+                data: PrizesActivated,
+                fill: false,
+                backgroundColor: "rgb(255, 99, 132)",
+                borderColor: "rgba(255, 99, 132, 0.2)",
+                },
+                {
+                label: "Оплачено призов",
+                data: PrizesClaimed,
+                fill: false,
+                backgroundColor: "rgb(65, 150, 132)",
+                borderColor: "rgba(65, 150, 132, 0.2)",
+                },
+            ],
+            };
+
+        }
+        
     setLoaded(true);
   }, [])
 

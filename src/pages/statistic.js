@@ -8,7 +8,10 @@ const Statistic = () => {
     const dispatch = useDispatch();
     const stat = useSelector(state => state.statistic.statistic)
     useEffect(() => {
+        if(!stat) {
         dispatch(GetStatistic());
+
+        }
     }, [])
 
     if(!stat){

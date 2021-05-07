@@ -15,36 +15,40 @@ const options = {
 let labels = [];
 let TotalWinnings = [];
 let WinningsClaimed = [];
-let data = [];
+let data = null;
 
 const DailyPrizes = ({ stat }) => {
+
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    stat.map((day) => {
-      labels.push(day.day + " " + day.month);
-      TotalWinnings.push(day.TotalWinnings);
-      WinningsClaimed.push(day.WinningsClaimed);
-    });
+       if (!data) {
+         stat.map((day) => {
+           labels.push(day.day + " " + day.month);
+           TotalWinnings.push(day.TotalWinnings);
+           WinningsClaimed.push(day.WinningsClaimed);
+         });
 
-    data = {
-      labels: labels,
-      datasets: [
-        {
-          label: "Выигрыш суммарный",
-          data: TotalWinnings,
-          fill: false,
-          backgroundColor: "rgb(255, 99, 132)",
-          borderColor: "rgba(255, 99, 132, 0.2)",
-        },
-        {
-          label: "Выигрыш оплаченый",
-          data: WinningsClaimed,
-          fill: false,
-          backgroundColor: "rgb(65, 150, 132)",
-          borderColor: "rgba(65, 150, 132, 0.2)",
-        },
-      ],
-    };
+         data = {
+           labels: labels,
+           datasets: [
+             {
+               label: "Выигрыш суммарный",
+               data: TotalWinnings,
+               fill: false,
+               backgroundColor: "rgb(255, 99, 132)",
+               borderColor: "rgba(255, 99, 132, 0.2)",
+             },
+             {
+               label: "Выигрыш оплаченый",
+               data: WinningsClaimed,
+               fill: false,
+               backgroundColor: "rgb(65, 150, 132)",
+               borderColor: "rgba(65, 150, 132, 0.2)",
+             },
+           ],
+         };
+       }
+    
     setLoaded(true);
   }, []);
 
