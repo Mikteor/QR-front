@@ -27,3 +27,10 @@ export const GET_ALL_USERS = 'get_all_users'
 export const USER_BY_PHONE = 'user_by_phone'
 export const GET_USERS_NDFL = 'get_user_ndfl'
 
+
+
+//statistic 
+
+export const GET_STATISTIC = 'get_all_statistic'
+
+
