@@ -9,7 +9,7 @@ const HistoryTable = ({data, history}) => {
       <Table className="tableWide" id="table-to-xls">
         <thead>
           <TrHeader>
-            <Td>Дата</Td>
+            <Td>Активация</Td>
             <Td>Имя Фамилия</Td>
             <Td>Телефон</Td>
             <Td>Почта</Td>
@@ -21,7 +21,7 @@ const HistoryTable = ({data, history}) => {
           {data.map((el, i) => {
             return (
               <TrBody style={{ color: el.player ? "black" : "grey" }}>
-                <Td>{el.date.split("T")[0]}</Td>
+                <Td>{el.ActivationDate ? el.ActivationDate.split("T")[0] : "-"}</Td>
                 <Td>
                   {el.player
                     ? el.player.fullname
