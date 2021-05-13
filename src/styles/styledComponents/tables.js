@@ -58,6 +58,11 @@ font-size:14px;
 padding: 10px 0;
 
 `
+export const TextArea = styled.textarea`
+height: 1em;
+resize: none;
+
+`
 
 export const Select = styled.select`
 

@@ -55,3 +55,21 @@ console.log(err)
 
     }
   };
+
+
+  export const commentUser = (text, id) => async (dispatch) => {
+    try {
+        const body = {comment: text}
+        const res = await innerBackend.get(`/admin/comment/${id}`,body)
+      
+      dispatch({
+        type: GET_USERS_NDFL,
+        payload: res.data,
+      });
+    } catch (err) {
+        console.log(err.response.data)      
+
+    }
+  };
+
+  

@@ -1,9 +1,10 @@
-import {Table, TrHeader, TrBody, Td} from '../../styles/styledComponents/tables'
-import React from 'react'
-
+import {Table, TrHeader, TrBody, Td, TextArea} from '../../styles/styledComponents/tables'
+import React, { useState } from 'react'
+import Comment from './comment'
 
 const NdflTable = ({data, history}) => {
-  
+    
+  const [comment, setComment] = useState('')
 
     return (
       <Table className="tableWide" id="ndfl-to-xls">
@@ -13,8 +14,8 @@ const NdflTable = ({data, history}) => {
             <Td>Телефон</Td>
             <Td>Почта</Td>
             <Td>Оплачено</Td>
+            <Td>Кол-во актив. кодов</Td>
             <Td>Общий выигрыш</Td>
-            {/* <Td>Активация</Td> */}
             <Td>На руки</Td>
             <Td>НДФЛ</Td>
           </TrHeader>
@@ -27,10 +28,13 @@ const NdflTable = ({data, history}) => {
                 <Td>+{el.phone}</Td>
                 <Td>{el.email}</Td>
                 <Td>{el.rebound ? "Да" : "Нет"}</Td>
+                <Td>{el.prizes_activated}</Td>
                 <Td>{el.prize_sum} рублей</Td>
-                {/* <Td>{el.activation}</Td>  */}
                 <Td>{el.sum_ndfl}</Td>
                 <Td>{el.tax_sum}</Td>
+                <Td>
+                  <Comment />
+                </Td>
                 <Td>
                   <button>оплатить</button>
                 </Td>
