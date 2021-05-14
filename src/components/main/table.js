@@ -1,13 +1,19 @@
 import {Table, TrHeader, TrBody, Td, TrFooter, Select} from '../../styles/styledComponents/tables'
-import React from 'react'
+import React, {useState} from 'react'
 import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { ChangeBundleStatus, DeleteBundle, downloadBundle, oneBundle } from '../../redux/actions/data';
+import Confirm from '../modal/confirm';
 let backend = process.env.REACT_APP_IP;
 
 const MainTable = ({data, history}) => {
     const dispatch = useDispatch()
-
+    const [confirm, setConfirm] = useState({
+        visible: false,
+        id:'',
+        amount: '',
+        value: '',
+      })
 
     const footer = data && {
         date: 'Итого',
@@ -33,14 +39,14 @@ const MainTable = ({data, history}) => {
       }
 
 
-    const handleSubmit = (e, id) => {
+    const handleSubmit = (e, id, amount, value) => {
         if(e.target.value == 'delete'){
             dispatch(DeleteBundle(id))
         }
 
 
         if(e.target.value == 'print'){
-            dispatch(ChangeBundleStatus(id))
+            setConfirm({...confirm, visible:true, id: id, amount:amount, value:value})
         }
 
         if(e.target.value == 'redirect'){
@@ -49,9 +55,15 @@ const MainTable = ({data, history}) => {
         }
       }
 
-
+      const toPrint = (id) => {
+        dispatch(ChangeBundleStatus(id))
+        setTimeout(() => {
+            setConfirm({...confirm, visible:false})
+        }, 200);
+      }
 
     return(
+        <>
         <Table className='tableWide'>
             <thead>
                 <TrHeader>
@@ -72,13 +84,13 @@ const MainTable = ({data, history}) => {
 
                     const minutes = newDate.getMinutes()
                     const zeroMinutes = minutes>9? minutes : '0'+minutes
-                    const date = `${newDate.getDay()}.${newDate.getMonth()}.${newDate.getFullYear()}/${newDate.getHours()}:${zeroMinutes}`
+                    const date = `${newDate.getDay()}.${newDate.getMonth()}.${newDate.getFullYear()} / ${newDate.getHours()}:${zeroMinutes}`
 
                     let dateDownloaded = ''
                     if(el.download_date){
                     const minutesDownload = newDownDate.getMinutes()
                     const zeroDownMinutes = minutesDownload>9? minutesDownload : '0'+minutesDownload
-                    dateDownloaded = `${newDownDate.getDay()}.${newDownDate.getMonth()}.${newDownDate.getFullYear()}/${newDownDate.getHours()}:${zeroDownMinutes}`}
+                    dateDownloaded = `${newDownDate.getDay()}.${newDownDate.getMonth()}.${newDownDate.getFullYear()} / ${newDownDate.getHours()}:${zeroDownMinutes}`}
                     return (
                         <TrBody  onDoubleClick={() => rowClick(el._id)}>
                             <Td>{date}</Td>
@@ -93,11 +105,11 @@ const MainTable = ({data, history}) => {
                             <Td>{el.download_num} раз / {dateDownloaded}</Td>
                             <Td>{el.printed ? 'Отправлен' : 'Не отправлен'}</Td>
                             <Td>
-                                <Select onChange={(e)=>handleSubmit(e, el._id)}>
+                                <Select onChange={(e)=>handleSubmit(e, el._id, el.amount, el.value)}>
                                     <option>опции</option>
                                     <option value="redirect">Подробнее</option>
-                                    <option value="print">Отправлено на печать</option>
-                                    <option value="delete">Удалить партию</option>
+                                    <option disabled={el.printed? true : false} value="print">Отправлено на печать</option>
+                                    <option disabled={el.printed? true : false} value="delete">Удалить партию</option>
                                 </Select>
                             </Td>
                         </TrBody>
@@ -117,7 +129,14 @@ const MainTable = ({data, history}) => {
                 </TrFooter>
             </tfoot>
         </Table>
-        
+
+
+        {confirm.visible && <Confirm 
+            text={`Подтвердите отправку на печать партии ${confirm.amount}шт по ${confirm.value}руб`} 
+            submit={()=>toPrint(confirm.id)} 
+            decline={()=>setConfirm({...confirm, visible:false})}
+            />}
+        </>
     )
 }
 export default MainTable

@@ -144,6 +144,7 @@ console.log(err)
     try {
       
     console.log('query',query)
+
     //   const res = await innerBackend.get("/codes/generatecodes",formData);
         const res = await innerBackend.get(`codes/find/claimed${query?query:''}`)
       console.log('resss ',res)
@@ -152,7 +153,7 @@ console.log(err)
         payload: res.data,
       });
     } catch (err) {
-        console.log(err.response.data)      
+        console.log('winners error :::',err.response.data)      
 
     }
   };

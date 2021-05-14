@@ -19,7 +19,7 @@ useEffect(()=>{
         <div>
             <h1>Общая таблица победителей</h1> 
             <div className={filterStyles.filterRow}>
-                    <NewFilter routeToFilter={(query)=>getActivatedCodes(query)} fullname phone payed value />
+                    <NewFilter routeToFilter={(query)=>getActivatedCodes(query)} fullname phone payed value email />
                     <ReactHTMLTableToExcel
                         id="win-table-xls-button"
                         className={filterStyles.xlsButton}

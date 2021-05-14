@@ -19,9 +19,15 @@ const BundleMoreTable = ({data}) => {
             </thead>
             <tbody>
                 {data.prizes.map((data,i)=>{
+                     const newDate = new Date(data.ActivationDate)
+                     const minutes = newDate.getMinutes()
+                     const zeroMinutes = minutes>9? minutes : '0'+minutes
+                     const date = `${newDate.getDay()}.${newDate.getMonth()}.${newDate.getFullYear()} / ${newDate.getHours()}:${zeroMinutes}`
+
+
                     return(
                         <TrBody style={{color: data.validated? 'black':'grey'}}>
-                            <Td>{data.activation_date ? data.activation_date: data.validated ? 'неизвестно':'N/P'}</Td>
+                            <Td>{data.ActivationDate ? date : data.validated ? 'неизвестно':'N/P'}</Td>
                             <Td>{data.player ? data.player.fullname: data.validated? 'неизвестно':'N/P'}</Td>
                             <Td>{data.player ?  data.player.phone:  data.validated?  'неизвестно':'N/P'}</Td>
                             <Td>{data.validated? 'Да' : 'Нет'}</Td>

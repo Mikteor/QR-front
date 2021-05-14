@@ -26,6 +26,7 @@ export const CLEAR_FILTERS = 'clear_filters'
 export const GET_ALL_USERS = 'get_all_users'
 export const USER_BY_PHONE = 'user_by_phone'
 export const GET_USERS_NDFL = 'get_user_ndfl'
+export const COMMENT_USER = 'comment_user'
 
 
 

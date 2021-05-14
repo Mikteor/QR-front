@@ -4,13 +4,14 @@ import {useDispatch} from 'react-redux'
 import { Input, Select} from '../../styles/styledComponents/filters'
 
 
-const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, value, prize_sum}) => {
+const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, value, prize_sum, email}) => {
 
     const dispatch = useDispatch()
 
     const[filters, setFilters] = useState({
         fullname: '',
         phone: '',
+        email:'',
         validated: '',
         payed: '',
         printed: '',
@@ -28,6 +29,7 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
         const newArr =   [
                 filters.fullname.length>0&&'fullname='+filters.fullname, 
                 filters.phone.length>0&&'phone='+filters.phone,
+                filters.email.length>0&&'email='+filters.email,
                 filters.validated.length>0&&'validated='+filters.validated,
                 filters.payed.length>0&&'payed='+filters.payed,
                 filters.printed.length>0&&'printed='+filters.printed,
@@ -66,6 +68,18 @@ const NewFilter = ({routeToFilter, fullname, phone, validated, payed, printed, v
                         name='phone'
                         type='search'
                         placeholder='Телефон'
+                        onChange={e=>inputFilterHandler(e)}
+                        />  
+                    </form>
+                </div>}
+                {email && 
+                <div className={styles.filterButton} >
+                    <img className={styles.filterIcon} src='/search.png'/>
+                    <form onSubmit={e=>onSubmit(e)}>
+                    <Input 
+                        name='email'
+                        type='search'
+                        placeholder='E-mail'
                         onChange={e=>inputFilterHandler(e)}
                         />  
                     </form>

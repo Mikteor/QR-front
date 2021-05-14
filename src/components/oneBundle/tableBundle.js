@@ -33,7 +33,7 @@ const BundleTable = ({data, history}) => {
         const hours = newDate.getHours()
         const minutes = newDate.getMinutes()
         const zeroMinutes = minutes>9? minutes : '0'+minutes
-        setDateDownloaded(day+'.'+month+'.'+year+'/'+hours+':'+zeroMinutes)
+        setDateDownloaded(day+'.'+month+'.'+year+' / '+hours+':'+zeroMinutes)
         }
     },[])
     useEffect(()=>{
@@ -45,7 +45,7 @@ const BundleTable = ({data, history}) => {
         const hours = newDate.getHours()
         const minutes = newDate.getMinutes()
         const zeroMinutes = minutes>9? minutes : '0'+minutes
-        setPrintDate(day+'.'+month+'.'+year+'/'+hours+':'+zeroMinutes)
+        setPrintDate(day+'.'+month+'.'+year+' / '+hours+':'+zeroMinutes)
         }
     },[])
     const handleDownload = (e) => {

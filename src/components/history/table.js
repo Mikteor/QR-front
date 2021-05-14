@@ -43,7 +43,7 @@ const HistoryTable = ({data, history}) => {
                     ? "неизвестно"
                     : "N/P"}
                 </Td>
-                <Td>{el.payed ? "Да" : "Нет"}</Td>
+                <Td>{el.payed ? "Да" : el.expired? 'Истек' : "Нет"}</Td>
                 <Td>{el.value} рублей</Td>
               </TrBody>
             );

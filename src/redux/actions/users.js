@@ -1,4 +1,4 @@
-import {GET_ALL_USERS, USER_BY_PHONE, GET_USERS_NDFL} from '../types'
+import {GET_ALL_USERS, USER_BY_PHONE, GET_USERS_NDFL, COMMENT_USER} from '../types'
 import {innerBackend, instance, setAuthToken} from '../../components/utils/axios'
 
 
@@ -60,14 +60,15 @@ console.log(err)
   export const commentUser = (text, id) => async (dispatch) => {
     try {
         const body = {comment: text}
-        const res = await innerBackend.get(`/admin/comment/${id}`,body)
+        console.log(body, 'id::: ',id)
+        const res = await innerBackend.put(`admin/comment/${id}`,body)
       
       dispatch({
-        type: GET_USERS_NDFL,
+        type: COMMENT_USER,
         payload: res.data,
       });
     } catch (err) {
-        console.log(err.response.data)      
+        console.log(err.response)      
 
     }
   };

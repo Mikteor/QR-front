@@ -1,5 +1,5 @@
 
-import {GET_ALL_USERS, USER_BY_PHONE, GET_USERS_NDFL, CHANGE_NDFL_STATUS } from '../types'
+import {GET_ALL_USERS, USER_BY_PHONE, GET_USERS_NDFL, CHANGE_NDFL_STATUS, COMMENT_USER } from '../types'
 
 
 
@@ -26,6 +26,7 @@ export default function(state = initialState, action) {
                 userByPhone: payload
             }
         case GET_USERS_NDFL:
+        case COMMENT_USER:
         case CHANGE_NDFL_STATUS:
             return {
                 ...state,
