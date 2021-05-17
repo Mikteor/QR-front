@@ -84,13 +84,13 @@ const MainTable = ({data, history}) => {
 
                     const minutes = newDate.getMinutes()
                     const zeroMinutes = minutes>9? minutes : '0'+minutes
-                    const date = `${newDate.getDay()}.${newDate.getMonth()}.${newDate.getFullYear()} / ${newDate.getHours()}:${zeroMinutes}`
+                    const date = `${newDate.getDate()}.${newDate.getMonth()+1}.${newDate.getFullYear()} / ${newDate.getHours()}:${zeroMinutes}`
 
                     let dateDownloaded = ''
                     if(el.download_date){
                     const minutesDownload = newDownDate.getMinutes()
                     const zeroDownMinutes = minutesDownload>9? minutesDownload : '0'+minutesDownload
-                    dateDownloaded = `${newDownDate.getDay()}.${newDownDate.getMonth()}.${newDownDate.getFullYear()} / ${newDownDate.getHours()}:${zeroDownMinutes}`}
+                    dateDownloaded = `${newDownDate.getDate()}.${newDownDate.getMonth()+1}.${newDownDate.getFullYear()} / ${newDownDate.getHours()}:${zeroDownMinutes}`}
                     return (
                         <TrBody  onDoubleClick={() => rowClick(el._id)}>
                             <Td>{date}</Td>
