@@ -22,7 +22,7 @@ const BundleMoreTable = ({data}) => {
                      const newDate = new Date(data.ActivationDate)
                      const minutes = newDate.getMinutes()
                      const zeroMinutes = minutes>9? minutes : '0'+minutes
-                     const date = `${newDate.getDay()}.${newDate.getMonth()}.${newDate.getFullYear()} / ${newDate.getHours()}:${zeroMinutes}`
+                     const date = `${newDate.getDate()}.${newDate.getMonth()+1}.${newDate.getFullYear()} / ${newDate.getHours()}:${zeroMinutes}`
 
 
                     return(

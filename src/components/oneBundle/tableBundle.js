@@ -15,8 +15,8 @@ const BundleTable = ({data, history}) => {
     useEffect(()=>{
         if(data){
         const newDate = new Date(data.date)
-        const day = newDate.getDay()
-        const month = newDate.getMonth()
+        const day = newDate.getDate()
+        const month = newDate.getMonth()+1
         const year = newDate.getFullYear()
         const hours = newDate.getHours()
         const minutes = newDate.getMinutes()
@@ -27,8 +27,8 @@ const BundleTable = ({data, history}) => {
     useEffect(()=>{
         if(data && data.download_date){
         const newDate = new Date(data.download_date)
-        const day = newDate.getDay()
-        const month = newDate.getMonth()
+        const day = newDate.getDate()
+        const month = newDate.getMonth()+1
         const year = newDate.getFullYear()
         const hours = newDate.getHours()
         const minutes = newDate.getMinutes()
@@ -39,8 +39,8 @@ const BundleTable = ({data, history}) => {
     useEffect(()=>{
         if(data && data.print_date){
         const newDate = new Date(data.print_date)
-        const day = newDate.getDay()
-        const month = newDate.getMonth()
+        const day = newDate.getDate()
+        const month = newDate.getMonth()+1
         const year = newDate.getFullYear()
         const hours = newDate.getHours()
         const minutes = newDate.getMinutes()
