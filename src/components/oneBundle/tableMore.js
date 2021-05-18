@@ -6,7 +6,7 @@ const BundleMoreTable = ({data}) => {
 
 
     return(
-        <Table className='tableWide'>
+        <Table className='tableWide' id={'oneBundleTable'}>
             <thead>
                 <TrHeader>
                     <Td>Дата валидации</Td>

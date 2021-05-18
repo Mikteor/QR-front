@@ -24,7 +24,7 @@ const data = useSelector(state => state.data.oneBundle)
                 <ReactHTMLTableToExcel
                     id="test-table-xls-button"
                     className={filterStyles.xlsButton}
-                    table="table-to-xls"
+                    table="oneBundleTable"
                     filename="tablexls"
                     sheet="tablexls"
                     buttonText="Скачать XLS"
